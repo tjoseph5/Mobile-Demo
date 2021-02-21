@@ -11,10 +11,10 @@ public class DragShoot : MonoBehaviour
     public Vector3 dragStartPos;
     public Vector3 dragReleasePos;
 
-    Touch touch;
+    public Touch touch;
 
     public bool isShoot;
-    bool canMove;
+    public bool canMove;
 
     public float forceMultiplier;
 
@@ -27,17 +27,23 @@ public class DragShoot : MonoBehaviour
 
     public float ballVelocity;
 
+    public float ballHeightVelocity;
+
+    public bool playerInCannon;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         canMove = false;
         isShoot = false;
+        playerInCannon = false;
     }
 
     private void Update()
     {
 
         ballVelocity = rb.velocity.magnitude;
+        ballHeightVelocity = rb.velocity.y;
 
         if (Input.touchCount > 0)
         {
@@ -90,7 +96,7 @@ public class DragShoot : MonoBehaviour
             }
         }
 
-        if (canMove) 
+        if (canMove && playerInCannon == false) 
         {
             if (waitForMove > 0)
             {
@@ -122,7 +128,7 @@ public class DragShoot : MonoBehaviour
 
     void Shoot(Vector3 Force)
     {
-        if(isShoot == false)
+        if(isShoot == false && playerInCannon == false)
         {
             rb.AddForce(new Vector3(Force.x, Force.y, z: Force.y) * forceMultiplier);
             isShoot = true;

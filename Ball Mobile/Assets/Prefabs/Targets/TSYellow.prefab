@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4561870493691646243}
   m_Layer: 0
   m_Name: shard5
-  m_TagString: Untagged
+  m_TagString: shards
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 8888648547875397678}
   m_Layer: 0
   m_Name: shard21
-  m_TagString: Untagged
+  m_TagString: shards
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 5590314367568302624}
   m_Layer: 0
   m_Name: shard14
-  m_TagString: Untagged
+  m_TagString: shards
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -437,7 +437,7 @@ GameObject:
   - component: {fileID: 6371402703023016451}
   m_Layer: 0
   m_Name: shard18
-  m_TagString: Untagged
+  m_TagString: shards
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -577,7 +577,7 @@ GameObject:
   - component: {fileID: 8816498332712517014}
   m_Layer: 0
   m_Name: shard2
-  m_TagString: Untagged
+  m_TagString: shards
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -717,7 +717,7 @@ GameObject:
   - component: {fileID: 5359709101457800685}
   m_Layer: 0
   m_Name: shard8
-  m_TagString: Untagged
+  m_TagString: shards
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -857,7 +857,7 @@ GameObject:
   - component: {fileID: 8489227426890568996}
   m_Layer: 0
   m_Name: shard13
-  m_TagString: Untagged
+  m_TagString: shards
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -997,7 +997,7 @@ GameObject:
   - component: {fileID: 4066881822206909198}
   m_Layer: 0
   m_Name: shard10
-  m_TagString: Untagged
+  m_TagString: shards
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1137,7 +1137,7 @@ GameObject:
   - component: {fileID: 1715606010867408832}
   m_Layer: 0
   m_Name: shard7
-  m_TagString: Untagged
+  m_TagString: shards
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1277,7 +1277,7 @@ GameObject:
   - component: {fileID: 866323432895134221}
   m_Layer: 0
   m_Name: shard9
-  m_TagString: Untagged
+  m_TagString: shards
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1417,7 +1417,7 @@ GameObject:
   - component: {fileID: 8435924279647020246}
   m_Layer: 0
   m_Name: shard4
-  m_TagString: Untagged
+  m_TagString: shards
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1557,7 +1557,7 @@ GameObject:
   - component: {fileID: 7400938023059683820}
   m_Layer: 0
   m_Name: shard15
-  m_TagString: Untagged
+  m_TagString: shards
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1697,7 +1697,7 @@ GameObject:
   - component: {fileID: 3144745818619035313}
   m_Layer: 0
   m_Name: shard19
-  m_TagString: Untagged
+  m_TagString: shards
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1837,7 +1837,7 @@ GameObject:
   - component: {fileID: 2973780529694846664}
   m_Layer: 0
   m_Name: shard6
-  m_TagString: Untagged
+  m_TagString: shards
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1977,7 +1977,7 @@ GameObject:
   - component: {fileID: 5624394669442303299}
   m_Layer: 0
   m_Name: shard12
-  m_TagString: Untagged
+  m_TagString: shards
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2117,7 +2117,7 @@ GameObject:
   - component: {fileID: 1901920874741663011}
   m_Layer: 0
   m_Name: shard1
-  m_TagString: Untagged
+  m_TagString: shards
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2257,7 +2257,7 @@ GameObject:
   - component: {fileID: 1579419872230333485}
   m_Layer: 0
   m_Name: shard20
-  m_TagString: Untagged
+  m_TagString: shards
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2397,7 +2397,7 @@ GameObject:
   - component: {fileID: 2966129107937894190}
   m_Layer: 0
   m_Name: shard3
-  m_TagString: Untagged
+  m_TagString: shards
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2537,7 +2537,7 @@ GameObject:
   - component: {fileID: 7391004769941973901}
   m_Layer: 0
   m_Name: shard16
-  m_TagString: Untagged
+  m_TagString: shards
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2685,7 +2685,7 @@ Transform:
   m_GameObject: {fileID: 8133072940775814723}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0.3}
+  m_LocalScale: {x: 2, y: 2, z: 0.7}
   m_Children:
   - {fileID: 2384598499408118308}
   - {fileID: 4933250537481607960}
@@ -2729,7 +2729,7 @@ GameObject:
   - component: {fileID: 8566387747155984199}
   m_Layer: 0
   m_Name: shard11
-  m_TagString: Untagged
+  m_TagString: shards
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2869,7 +2869,7 @@ GameObject:
   - component: {fileID: 1741831907591772180}
   m_Layer: 0
   m_Name: shard17
-  m_TagString: Untagged
+  m_TagString: shards
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3009,7 +3009,7 @@ GameObject:
   - component: {fileID: 5841373988087074442}
   m_Layer: 0
   m_Name: shard22
-  m_TagString: Untagged
+  m_TagString: shards
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

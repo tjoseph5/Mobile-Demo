@@ -9,6 +9,7 @@ TagManager:
   - Hammer
   - Ricochet
   - Start Plane
+  - shards
   layers:
   - Default
   - TransparentFX

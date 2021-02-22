@@ -5,7 +5,7 @@ using UnityEngine;
 public class WindZone : MonoBehaviour
 {
 
-    List<Rigidbody> WindZoneRbs = new List<Rigidbody>();
+    public List<Rigidbody> WindZoneRbs = new List<Rigidbody>();
 
     Vector3 windDirection = Vector3.forward;
 

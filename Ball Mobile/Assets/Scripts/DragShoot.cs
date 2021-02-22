@@ -84,7 +84,7 @@ public class DragShoot : MonoBehaviour
             {
                 //transform.Translate(-speed * Time.unscaledDeltaTime, 0, 0);
                 rb.AddForce(-speed, 0, 0);
-                moveLeft -= 0.1f;
+                //moveLeft -= 0.1f;
 
                 if (isShoot && canMove && waitForMove <= 0)
                 {
@@ -97,7 +97,7 @@ public class DragShoot : MonoBehaviour
             {
                 //transform.Translate(speed * Time.unscaledDeltaTime, 0, 0);
                 rb.AddForce(speed, 0, 0);
-                moveRight -= 0.1f;
+                //moveRight -= 0.1f;
 
                 if (isShoot && canMove && waitForMove <= 0)
                 {

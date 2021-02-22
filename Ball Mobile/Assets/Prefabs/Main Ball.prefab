@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8659455100767373852}
   - component: {fileID: 8659455100767373840}
   - component: {fileID: 8659455100767373841}
+  - component: {fileID: 7258878512057872393}
   m_Layer: 0
   m_Name: Main Ball
   m_TagString: Untagged
@@ -140,3 +141,17 @@ MonoBehaviour:
   ballVelocity: 0
   ballHeightVelocity: 0
   playerInCannon: 0
+  velocityCap: 50
+--- !u!114 &7258878512057872393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8659455100767373855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e6904c011df2c04cb2966119d4b310a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedStrengh: 2

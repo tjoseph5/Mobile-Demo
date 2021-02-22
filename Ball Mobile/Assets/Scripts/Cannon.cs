@@ -8,9 +8,12 @@ public class Cannon : MonoBehaviour
     GameObject playerBall;
     DragShoot playerBallVel;
     bool inMyCannon;
+    CannonMovement cannonMovement;
 
     public float cannonstrength;
     Vector3 shotDirection = -Vector3.right;
+
+    public float movementSpeed;
 
     void Start()
     {
@@ -18,6 +21,7 @@ public class Cannon : MonoBehaviour
         shotPos = transform.GetChild(0).transform;
         playerBall = GameObject.FindGameObjectWithTag("Player");
         playerBallVel = playerBall.GetComponent<DragShoot>();
+        cannonMovement = gameObject.GetComponent<CannonMovement>();
     }
 
 
@@ -67,6 +71,17 @@ public class Cannon : MonoBehaviour
         {
             playerBallVel.playerInCannon = true;
             inMyCannon = true;
+
+            if (inMyCannon && playerBallVel.playerInCannon)
+            {
+                switch (cannonMovement.direction)
+                {
+                    case CannonMovement.DirectionalMovement.idle: cannonMovement.speed = 0; break;
+                    case CannonMovement.DirectionalMovement.forward_backward: cannonMovement.speed = movementSpeed; break;
+                    case CannonMovement.DirectionalMovement.up_down: cannonMovement.speed = movementSpeed; break;
+                    case CannonMovement.DirectionalMovement.left_right: cannonMovement.speed = movementSpeed; break;
+                }
+            }
         }
     }
 
@@ -78,7 +93,7 @@ public class Cannon : MonoBehaviour
             playerBallVel.canMove = true;
             playerBall.GetComponent<Rigidbody>().velocity = cannonstrength * shotDirection;
             inMyCannon = false;
-            //gameObject.GetComponent<CannonMovement>().direction = CannonMovement.DirectionalMovement.idle;
+            gameObject.GetComponent<CannonMovement>().direction = CannonMovement.DirectionalMovement.idle;
         }
 
     }

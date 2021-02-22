@@ -46,7 +46,7 @@ public class BouncePad : MonoBehaviour
         {
             foreach (Rigidbody rigid in ObjectRbs)
             {
-                rigid.AddForce( bounceDirection * (bounceStrength * playerBallV.ballVelocity));
+                rigid.velocity = bounceDirection * (bounceStrength * playerBallV.ballVelocity);
             }
         }
     }

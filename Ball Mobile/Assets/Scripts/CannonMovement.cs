@@ -6,7 +6,7 @@ public class CannonMovement : MonoBehaviour
 {
 
     private float timer = 0.0f;
-    public float speed;
+    [HideInInspector]public float speed;
     public float flipTimer;
 
     public enum DirectionalMovement { idle, left_right, up_down, forward_backward };

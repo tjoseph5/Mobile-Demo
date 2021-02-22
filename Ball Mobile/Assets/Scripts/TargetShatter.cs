@@ -25,22 +25,37 @@ public class TargetShatter : MonoBehaviour
         {
             case TargetType.pointTen:
                 renderer.material.color = Color.green;
+                gameObject.transform.localScale = new Vector3(5, 5, 0.7f);
+                gameObject.name = "Ten";
+
                 score = 10;
                 break;
             case TargetType.pointTwenty:
                 renderer.material.color = Color.blue;
+                gameObject.transform.localScale = new Vector3(4, 4, 0.7f);
+                gameObject.name = "Twenty";
+
                 score = 20;
                 break;
             case TargetType.pointFifty:
                 renderer.material.color = Color.yellow;
+                gameObject.transform.localScale = new Vector3(3, 3, 0.7f);
+                gameObject.name = "Fifty";
+
                 score = 50;
                 break;
             case TargetType.pointHundred:
                 renderer.material.color = Color.cyan;
+                gameObject.transform.localScale = new Vector3(2, 2, 0.7f);
+                gameObject.name = "Hundred";
+
                 score = 100;
                 break;
             case TargetType.pointThousand:
-               renderer.material.color = Color.white;
+                renderer.material.color = Color.white;
+                gameObject.transform.localScale = new Vector3(1, 1, 0.3f);
+                gameObject.name = "Thousand";
+
                 score = 1000;
                 break;
         }
@@ -50,7 +65,7 @@ public class TargetShatter : MonoBehaviour
     {
         foreach(GameObject gameObj in destroyedVersion)
         {
-            gameObj.transform.localScale = gameObject.transform.localScale;
+            gameObj.GetComponentInChildren<Transform>().localScale = gameObject.transform.localScale;
         }
     }
 

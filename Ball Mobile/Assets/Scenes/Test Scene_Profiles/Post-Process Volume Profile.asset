@@ -72,8 +72,8 @@ MonoBehaviour:
     overrideState: 0
     value: 0
   color:
-    overrideState: 0
-    value: {r: 1, g: 1, b: 1, a: 1}
+    overrideState: 1
+    value: {r: 1, g: 0.98571914, b: 0.8443396, a: 1}
   fastMode:
     overrideState: 0
     value: 0
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb84e30e02715445aeb9959894e3b4d, type: 3}
   m_Name: ColorGrading
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
@@ -1490,3 +1490,26 @@ MonoBehaviour:
   - {fileID: -1108268947343069084}
   - {fileID: -6779115800169409139}
   - {fileID: -9127087101739940222}
+  - {fileID: 6864023940117266932}
+--- !u!114 &6864023940117266932
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b94fcd11afffcb142908bfcb1e261fba, type: 3}
+  m_Name: MotionBlur
+  m_EditorClassIdentifier: 
+  active: 0
+  enabled:
+    overrideState: 1
+    value: 1
+  shutterAngle:
+    overrideState: 1
+    value: 50
+  sampleCount:
+    overrideState: 1
+    value: 10

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DragShoot : MonoBehaviour
 {
@@ -31,19 +32,28 @@ public class DragShoot : MonoBehaviour
 
     public bool playerInCannon;
 
+    public float velocityCap;
+
+    GameObject starterPlane;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         canMove = false;
         isShoot = false;
         playerInCannon = false;
+        starterPlane = GameObject.FindGameObjectWithTag("Start Plane");
     }
 
     private void Update()
     {
-
         ballVelocity = rb.velocity.magnitude;
         ballHeightVelocity = rb.velocity.y;
+
+        if (canMove && isShoot && ballVelocity == 0)
+        {
+            StartCoroutine(gameRestart());
+        }
 
         if (Input.touchCount > 0)
         {
@@ -51,7 +61,7 @@ public class DragShoot : MonoBehaviour
 
             if (touch.phase == TouchPhase.Began)
             {
-                DragStart();
+                    DragStart();
             }
 
             /*if (touch.phase == TouchPhase.Moved)
@@ -110,6 +120,14 @@ public class DragShoot : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        if(rb.velocity.magnitude > velocityCap)
+        {
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, velocityCap);
+        }
+    }
+
     void DragStart()
     {
         dragStartPos = touch.position;
@@ -133,7 +151,16 @@ public class DragShoot : MonoBehaviour
             rb.AddForce(new Vector3(Force.x, Force.y, z: Force.y) * forceMultiplier);
             isShoot = true;
             canMove = true;
+
+            Destroy(starterPlane);
         }
+
+    }
+
+    IEnumerator gameRestart()
+    {
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("Test Scene");
 
     }
 }

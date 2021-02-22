@@ -7,6 +7,8 @@ TagManager:
   - Target
   - Cannon
   - Hammer
+  - Ricochet
+  - Start Plane
   layers:
   - Default
   - TransparentFX

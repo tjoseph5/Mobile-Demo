@@ -6,18 +6,18 @@ using UnityEngine.SceneManagement;
 public class LevelRestart : MonoBehaviour
 {
 
-    DragShoot player;
+    GameObject playerBall;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = gameObject.GetComponent<DragShoot>();
+        playerBall = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (player.canMove && player.isShoot && player.ballVelocity == 0)
+        if (playerBall.GetComponent<DragShoot>().canMove && playerBall.GetComponent<DragShoot>().isShoot && playerBall.GetComponent<DragShoot>().ballVelocity == 0)
         {
             StartCoroutine(GameRestart());
         }
@@ -25,6 +25,8 @@ public class LevelRestart : MonoBehaviour
 
     IEnumerator GameRestart()
     {
+        yield return new WaitForSeconds(3f);
+        Destroy(playerBall);
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("Test Scene");
 

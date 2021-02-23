@@ -126,7 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   power: 0
   maxDrag: 0
-  rb: {fileID: 0}
+  rb: {fileID: 8659455100767373840}
   dragStartPos: {x: 0, y: 0, z: 0}
   dragReleasePos: {x: 0, y: 0, z: 0}
   isShoot: 0

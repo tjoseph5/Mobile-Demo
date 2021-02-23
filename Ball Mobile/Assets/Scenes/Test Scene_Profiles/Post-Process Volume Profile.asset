@@ -18,7 +18,7 @@ MonoBehaviour:
     value: 1
   preset:
     overrideState: 1
-    value: 3
+    value: 1
   maximumIterationCount:
     overrideState: 0
     value: 16
@@ -146,7 +146,7 @@ MonoBehaviour:
     value: {r: 1, g: 1, b: 1, a: 1}
   hueShift:
     overrideState: 0
-    value: 0
+    value: -15
   saturation:
     overrideState: 1
     value: 4
@@ -155,16 +155,16 @@ MonoBehaviour:
     value: 0
   postExposure:
     overrideState: 1
-    value: 1.1
+    value: 1
   contrast:
     overrideState: 1
     value: 4
   mixerRedOutRedIn:
     overrideState: 0
-    value: 100
+    value: -115
   mixerRedOutGreenIn:
     overrideState: 0
-    value: 0
+    value: -30
   mixerRedOutBlueIn:
     overrideState: 1
     value: -15

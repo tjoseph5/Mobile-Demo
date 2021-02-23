@@ -91,7 +91,14 @@ public class TargetShatter : MonoBehaviour
                     Instantiate(destroyedVersion[4], transform.position, transform.rotation);
                     break;
             }
-            Destroy(gameObject);
+            StartCoroutine(DestroyBuildDestroy());
         }
+    }
+
+    IEnumerator DestroyBuildDestroy()
+    {
+        gameObject.SetActive(false);
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
     }
 }

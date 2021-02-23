@@ -24,7 +24,7 @@ public class DragShoot : MonoBehaviour
     public float moveRight;
 
     public TimeManager timeManager;
-    public float waitForMove = 100;
+    public float waitForMove;
 
     public float ballVelocity;
 
@@ -35,6 +35,7 @@ public class DragShoot : MonoBehaviour
     public float velocityCap;
 
     GameObject starterPlane;
+    //public Transform spawnPoint;
 
     private void Start()
     {
@@ -43,6 +44,7 @@ public class DragShoot : MonoBehaviour
         isShoot = false;
         playerInCannon = false;
         starterPlane = GameObject.FindGameObjectWithTag("Start Plane");
+        //spawnPoint = GameObject.FindGameObjectWithTag("Spawn Point").transform;
     }
 
     private void Update()
@@ -52,7 +54,7 @@ public class DragShoot : MonoBehaviour
 
         if (canMove && isShoot && ballVelocity == 0)
         {
-            StartCoroutine(gameRestart());
+            StartCoroutine(GameRestart());
         }
 
         if (Input.touchCount > 0)
@@ -144,7 +146,7 @@ public class DragShoot : MonoBehaviour
         Shoot(Force: dragStartPos - dragReleasePos);
     }
 
-    void Shoot(Vector3 Force)
+    public void Shoot(Vector3 Force)
     {
         if(isShoot == false && playerInCannon == false)
         {
@@ -152,15 +154,35 @@ public class DragShoot : MonoBehaviour
             isShoot = true;
             canMove = true;
 
-            Destroy(starterPlane);
+            starterPlane.SetActive(false);
         }
 
     }
 
-    IEnumerator gameRestart()
+    /*IEnumerator GameRestart()
+    {
+        starterPlane.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        Respawn(spawnPoint);
+    }*/
+
+    IEnumerator GameRestart()
     {
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("Test Scene");
-
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    /*
+    void Respawn(Transform transform)
+    {
+        if(isShoot && canMove)
+        {
+            isShoot = false;
+            canMove = false;
+            waitForMove = 1;
+            gameObject.transform.position = transform.position;
+            gameObject.transform.rotation = transform.rotation;
+        }
+        
+    } */
 }

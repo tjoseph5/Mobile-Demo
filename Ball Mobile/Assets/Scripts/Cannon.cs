@@ -52,7 +52,7 @@ public class Cannon : MonoBehaviour
                         playerBall.transform.position = shotPos.transform.position;
                         playerBall.transform.rotation = shotPos.transform.rotation;
                         playerBallVel.canMove = false;
-                        playerBallVel.waitForMove = 1;
+                        playerBallVel.waitForMove = 3;
                     }
                     break;
 
@@ -94,6 +94,7 @@ public class Cannon : MonoBehaviour
             playerBall.GetComponent<Rigidbody>().velocity = cannonstrength * shotDirection;
             inMyCannon = false;
             gameObject.GetComponent<CannonMovement>().direction = CannonMovement.DirectionalMovement.idle;
+            playerBallVel.timeManager.DoSlowmotion();
         }
 
     }

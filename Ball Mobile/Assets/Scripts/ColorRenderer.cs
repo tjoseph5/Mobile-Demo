@@ -34,11 +34,20 @@ public class ColorRenderer : MonoBehaviour
                 break;
         }
 
-        Destroy(gameObject, 10);
+        StartCoroutine(DestroyBuildDestroy());
+
     }
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    IEnumerator DestroyBuildDestroy()
+    {
+        yield return new WaitForSeconds(10f);
+        gameObject.SetActive(false);
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
     }
 }

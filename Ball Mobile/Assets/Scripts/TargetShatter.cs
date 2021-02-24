@@ -59,14 +59,18 @@ public class TargetShatter : MonoBehaviour
                 score = 1000;
                 break;
         }
+
+        /*
+        foreach (GameObject gameObj in destroyedVersion)
+        {
+            gameObj.GetComponentInChildren<Transform>().localScale = gameObject.transform.localScale;
+        }
+        */
     }
 
     void Update()
     {
-        foreach(GameObject gameObj in destroyedVersion)
-        {
-            gameObj.GetComponentInChildren<Transform>().localScale = gameObject.transform.localScale;
-        }
+        
     }
 
     void OnCollisionEnter(Collision collision)

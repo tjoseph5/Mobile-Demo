@@ -19,7 +19,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 64
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &8698500490063970426
 Transform:
@@ -111,6 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cannonstrength: 50
+  movementSpeed: 0
 --- !u!114 &7014720944844388968
 MonoBehaviour:
   m_ObjectHideFlags: 0

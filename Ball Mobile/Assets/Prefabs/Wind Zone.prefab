@@ -57,4 +57,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17175b43ddaa7064eb69513d6beffd82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WindZoneRbs: []
   windStrength: 100

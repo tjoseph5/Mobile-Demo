@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6300621466335345718
 Transform:
@@ -176,6 +176,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wind Zone
+      objectReference: {fileID: 0}
+    - target: {fileID: 7517166586719895914, guid: 3f4d539edf6cb904491b2c678fceb3e1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7517166586719895927, guid: 3f4d539edf6cb904491b2c678fceb3e1,
         type: 3}

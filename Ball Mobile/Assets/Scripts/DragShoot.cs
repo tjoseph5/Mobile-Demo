@@ -52,7 +52,7 @@ public class DragShoot : MonoBehaviour
         ballVelocity = rb.velocity.magnitude;
         ballHeightVelocity = rb.velocity.y;
 
-        if (canMove && isShoot && ballVelocity == 0)
+        if (canMove && isShoot && ballVelocity < 0.09)
         {
             StartCoroutine(GameRestart());
         }

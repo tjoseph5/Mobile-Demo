@@ -2,15 +2,17 @@
 
 public class TimeManager : MonoBehaviour
 {
-    public float slowdownFactor = 0.05f;
-    public float slowdownLength = 2f;
+    public float slowdownFactor = 0.05f; //how slow is the slowdown itself
+    public float slowdownLength = 2f; //How long does slowmotion last
 
+    //Function that slows time when called
     public void DoSlowmotion()
     {
         Time.timeScale = slowdownFactor;
         Time.fixedDeltaTime = Time.timeScale * .02f;
     }
 
+    //Function that set time to normal when called
     public void UndoSlowmotion()
     {
         /*

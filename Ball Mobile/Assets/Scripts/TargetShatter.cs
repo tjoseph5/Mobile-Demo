@@ -5,14 +5,14 @@ using UnityEngine;
 public class TargetShatter : MonoBehaviour
 {
 
-    GameObject playerBall;
-    public GameObject [] destroyedVersion = new GameObject [5];
-    Renderer renderer;
+    GameObject playerBall; //The player Ball
+    public GameObject [] destroyedVersion = new GameObject [5]; //The shattered versions
+    Renderer renderer; //gameObject's renderer
 
-    public enum TargetType { pointTen, pointTwenty, pointFifty, pointHundred, pointThousand };
+    public enum TargetType { pointTen, pointTwenty, pointFifty, pointHundred, pointThousand }; //list of different types of targets. Each variable has their own unique score variable, scales, and material color
     public TargetType targetTypes = TargetType.pointTen;
 
-    int score;
+    int score; //score the player recieves when the target is hit
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +21,7 @@ public class TargetShatter : MonoBehaviour
         renderer = gameObject.GetComponent<Renderer>();
         playerBall = GameObject.FindGameObjectWithTag("Player");
 
+        //This switch enum defines each list variable's score amount, size, color, and name
         switch (targetTypes)
         {
             case TargetType.pointTen:
@@ -60,7 +61,7 @@ public class TargetShatter : MonoBehaviour
                 break;
         }
 
-        /*
+        /* //Sets localScale of instantiated shatter object to the gameObject's current scale vectors
         foreach (GameObject gameObj in destroyedVersion)
         {
             gameObj.GetComponentInChildren<Transform>().localScale = gameObject.transform.localScale;
@@ -77,7 +78,7 @@ public class TargetShatter : MonoBehaviour
     {
         if(collision.gameObject == playerBall)
         {
-            switch (targetTypes)
+            switch (targetTypes) //Instantiates different shattered target types depending on their variable
             {
                 case TargetType.pointTen:
                     Instantiate(destroyedVersion[0], transform.position, transform.rotation);
@@ -99,10 +100,11 @@ public class TargetShatter : MonoBehaviour
         }
     }
 
+    //Destroys gameObject after 1 second
     IEnumerator DestroyBuildDestroy()
     {
-        gameObject.SetActive(false);
-        yield return new WaitForSeconds(1f);
+        gameObject.SetActive(false); //This propertly removes the gameObject from the WindZones before being destroyed. Without this, the game would be constantly trying to access gameObjects that no longer exist, causing a memory leak 
+        yield return new WaitForSeconds(1f); //Makes sure the previous line of code occurs first before completely deleting the object
         Destroy(gameObject);
     }
 }

@@ -34,6 +34,6 @@ public class TimeManager : MonoBehaviour
 
     private void Update()
     {
-        UndoSlowmotion();
+        UndoSlowmotion(); //Placing this function in void Update will always normalize time
     }
 }

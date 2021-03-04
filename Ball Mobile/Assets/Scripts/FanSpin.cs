@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//All this script does is animate the fans to spin
 public class FanSpin : MonoBehaviour
 {
-
     public float speed;
     GameObject windZone;
     Quaternion rotation;

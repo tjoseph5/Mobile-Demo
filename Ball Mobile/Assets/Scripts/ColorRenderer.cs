@@ -5,7 +5,7 @@ using UnityEngine;
 public class ColorRenderer : MonoBehaviour
 {
 
-    public enum TargetType { green, blue, yellow, cyan, white };
+    public enum TargetType { green, blue, yellow, cyan, white }; //This sets every shard to a specific color
     Renderer renderer;
     public TargetType targetTypes = TargetType.green;
 
@@ -15,7 +15,7 @@ public class ColorRenderer : MonoBehaviour
 
         renderer = gameObject.GetComponent<Renderer>();
 
-        switch (targetTypes)
+        switch (targetTypes) //Defines each color state
         {
             case TargetType.green:
                 renderer.material.color = Color.green;
@@ -34,7 +34,7 @@ public class ColorRenderer : MonoBehaviour
                 break;
         }
 
-        StartCoroutine(DestroyBuildDestroy());
+        StartCoroutine(DestroyBuildDestroy()); //Automatically starts a coroutine that removes the shards from the scene in order to clean up the scenes and also for optimization purposes
 
     }
     // Update is called once per frame
@@ -43,11 +43,12 @@ public class ColorRenderer : MonoBehaviour
         
     }
 
+    //Destroys gameObject after 1 second and deactivates it. No, I don't know why I named this Coroutine after that one live action Cartoon Network show starring Andrew W.K.
     IEnumerator DestroyBuildDestroy()
     {
         yield return new WaitForSeconds(10f);
-        gameObject.SetActive(false);
-        yield return new WaitForSeconds(1f);
+        gameObject.SetActive(false); //This propertly removes the gameObject from the WindZones before being destroyed. Without this, the game would be constantly trying to access gameObjects that no longer exist, causing a memory leak 
+        yield return new WaitForSeconds(1f); //Makes sure the previous line of code occurs first before completely deleting the object
         Destroy(gameObject);
     }
 }

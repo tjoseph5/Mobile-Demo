@@ -100,7 +100,7 @@ public class TargetShatter : MonoBehaviour
         }
     }
 
-    //Destroys gameObject after 1 second
+    //Destroys gameObject after 1 second and deactivates it. No, I don't know why I named this Coroutine after that one live action Cartoon Network show starring Andrew W.K.
     IEnumerator DestroyBuildDestroy()
     {
         gameObject.SetActive(false); //This propertly removes the gameObject from the WindZones before being destroyed. Without this, the game would be constantly trying to access gameObjects that no longer exist, causing a memory leak 

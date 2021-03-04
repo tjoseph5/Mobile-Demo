@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class BouncePad : MonoBehaviour
 {
-    List<Rigidbody> ObjectRbs = new List<Rigidbody>();
+    List<Rigidbody> ObjectRbs = new List<Rigidbody>(); //A list that contains all of the rigidbodies of objects that have interacted with a bounce pad
 
-    public float bounceStrength;
+    public float bounceStrength; //the strength of a bounce pad
 
-    Vector3 bounceDirection = Vector3.up;
+    Vector3 bounceDirection = Vector3.up; //the direction that the bounce pad will be sending any object
 
-    DragShoot playerBallV;
+    DragShoot playerBallV; //Ball's DragShoot Component
 
     private void Start()
     {
-        playerBallV = GameObject.FindGameObjectWithTag("Player").GetComponent<DragShoot>();
+        playerBallV = GameObject.FindGameObjectWithTag("Player").GetComponent<DragShoot>(); //Sets variable to Player ball
     }
 
+    //This adds any gameObject with a rigidbody component to the ObjectRbs list on collision
     private void OnTriggerEnter(Collider other)
     {
         Rigidbody objectRigid = other.gameObject.GetComponent<Rigidbody>();
@@ -27,6 +28,7 @@ public class BouncePad : MonoBehaviour
         }
     }
 
+    //This removes any gameObject with a rigidbody component to the ObjectRbs list out of collision
     private void OnTriggerExit(Collider other)
     {
         Rigidbody objectRigid = other.gameObject.GetComponent<Rigidbody>();
@@ -37,6 +39,7 @@ public class BouncePad : MonoBehaviour
         }
     }
 
+    //This updates will bounce any object with a rigid component away in the respected Bouncepad's Y axis
     private void FixedUpdate()
     {
 

@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 141bed409ac524946a2612a82848c625, type: 2}
+  - {fileID: 2100000, guid: 1e4fa24270bbe404bbcba5414ee630a8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -104,9 +104,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8659455100767373855}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 1.55
   m_Drag: 0
-  m_AngularDrag: 4.45
+  m_AngularDrag: 1.85
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -124,24 +124,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7bb10665be94ca40a5092d9ccf25eb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 0
-  maxDrag: 0
   rb: {fileID: 8659455100767373840}
   dragStartPos: {x: 0, y: 0, z: 0}
   dragReleasePos: {x: 0, y: 0, z: 0}
   isShoot: 0
   canMove: 0
-  forceMultiplier: 1
-  speed: 100
-  moveLeft: 50
-  moveRight: 50
+  forceMultiplier: 2.3
+  speed: 135
+  moveLeft: 100
+  moveRight: 100
   timeManager: {fileID: 4372581878320668304, guid: 118d10c24b232a24a8945a04d57ddd30,
     type: 3}
-  waitForMove: 50
+  waitForMove: 1
   ballVelocity: 0
   ballHeightVelocity: 0
   playerInCannon: 0
   velocityCap: 50
+  spawnPoint: {fileID: 0}
 --- !u!114 &7258878512057872393
 MonoBehaviour:
   m_ObjectHideFlags: 0

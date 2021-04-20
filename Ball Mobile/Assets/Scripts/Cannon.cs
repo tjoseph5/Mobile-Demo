@@ -22,6 +22,7 @@ public class Cannon : MonoBehaviour
         playerBall = GameObject.FindGameObjectWithTag("Player");
         playerBallVel = playerBall.GetComponent<DragShoot>();
         cannonMovement = gameObject.GetComponent<CannonMovement>();
+        gameObject.name = "Cannon";
     }
 
 

@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class DragShoot : MonoBehaviour
 {
-    public float power;
-    public float maxDrag;
     public Rigidbody rb; //Player Rigidbody
 
     public Vector3 dragStartPos; //The vector3 that is equal to the player's start touch position
@@ -35,7 +33,9 @@ public class DragShoot : MonoBehaviour
     public float velocityCap; //Float that caps the velocity of the ball
 
     GameObject starterPlane; // The plane where the ball is spawned on
-    //public Transform spawnPoint;
+    public Transform spawnPoint;
+
+    bool canFlick;
 
     private void Start()
     {
@@ -44,7 +44,8 @@ public class DragShoot : MonoBehaviour
         isShoot = false;
         playerInCannon = false;
         starterPlane = GameObject.FindGameObjectWithTag("Start Plane"); //Gets the plane that the player is spawned on
-        //spawnPoint = GameObject.FindGameObjectWithTag("Spawn Point").transform;
+        spawnPoint = GameObject.FindGameObjectWithTag("Spawn Point").transform;
+        canFlick = false;
     }
 
     private void Update()
@@ -65,7 +66,20 @@ public class DragShoot : MonoBehaviour
 
             if (touch.phase == TouchPhase.Began) //Checks to see if the player has touched the screen
             {
-                    DragStart();
+                Ray ray = Camera.main.ScreenPointToRay(Input.touches[0].position);
+                RaycastHit hit;
+
+                if(Physics.Raycast(ray, out hit))
+                {
+                    if(hit.collider != null)
+                    {
+                        if(hit.collider.gameObject.name == "Main Ball")
+                        {
+                            Debug.Log("the ball is being touched");
+                            DragStart();
+                        }
+                    }
+                }  
             }
 
             /*if (touch.phase == TouchPhase.Moved)
@@ -75,7 +89,10 @@ public class DragShoot : MonoBehaviour
 
             if (touch.phase == TouchPhase.Ended) //Checks to see if the player is no longer touching the screen after touching it
             {
-                DragRelease();
+                if(canFlick == true)
+                {
+                    DragRelease();
+                }
 
                 if (isShoot) //Keeps the game from continuously remaining in slowmotion after the player is no longer moving left or right
                 {
@@ -89,7 +106,7 @@ public class DragShoot : MonoBehaviour
             {
                 //transform.Translate(-speed * Time.unscaledDeltaTime, 0, 0);
                 rb.AddForce(-speed, 0, 0);
-                //moveLeft -= 0.1f;
+                //moveLeft -= 1 * Time.deltaTime;
 
                 if (isShoot && canMove && waitForMove <= 0) //Slow Motion effect
                 {
@@ -137,6 +154,7 @@ public class DragShoot : MonoBehaviour
     void DragStart()
     {
         dragStartPos = touch.position; //Sets the dragStartPos to the player's current touch position
+        canFlick = true;
     }
 
     /*void Dragging()
@@ -147,6 +165,7 @@ public class DragShoot : MonoBehaviour
     void DragRelease()
     {
         dragReleasePos = touch.position; //Sets the dragReleasePos to the player's current touch position
+        canFlick = false;
         Shoot(Force: dragStartPos - dragReleasePos); //Launches the ball by using the difference between the dragStartPos and the dragReleasePos, and multiplying it by the forceMultipler float
     }
 
@@ -164,21 +183,15 @@ public class DragShoot : MonoBehaviour
 
     }
 
-    /*IEnumerator GameRestart()
+    IEnumerator GameRestart()
     {
         starterPlane.SetActive(true);
         yield return new WaitForSeconds(1f);
         Respawn(spawnPoint);
-    }*/
-
-    //Restarts the game
-    IEnumerator GameRestart()
-    {
-        yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        gameObject.transform.eulerAngles = Vector3.zero;
     }
 
-    /*
+    
     void Respawn(Transform transform)
     {
         if(isShoot && canMove)
@@ -190,5 +203,15 @@ public class DragShoot : MonoBehaviour
             gameObject.transform.rotation = transform.rotation;
         }
         
-    } */
+    }
+
+
+    //Restarts the game
+    /*
+    IEnumerator GameRestart()
+    {
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    */
 }

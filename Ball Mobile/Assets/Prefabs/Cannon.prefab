@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9168749839241865110}
   - component: {fileID: 9168749839241865099}
   - component: {fileID: 7014720944844388968}
+  - component: {fileID: 6445575303446673388}
   m_Layer: 0
   m_Name: Cannon
   m_TagString: Untagged
@@ -63,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 521d3aa7b1786284291c37f97c6bc19b, type: 2}
+  - {fileID: 2100000, guid: 8118170310e357e45b53fd24e72d3488, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -127,6 +128,30 @@ MonoBehaviour:
   speed: 0
   flipTimer: 0
   direction: 0
+--- !u!205 &6445575303446673388
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8357722922225457856}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers: []
+  m_Enabled: 1
 --- !u!1 &9168749839473751909
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,6 +14,8 @@ public class TargetShatter : MonoBehaviour
 
     int score; //score the player recieves when the target is hit
 
+    [SerializeField] Material[] materials = new Material[5];
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +28,7 @@ public class TargetShatter : MonoBehaviour
         {
             case TargetType.pointTen:
                 renderer.material.color = Color.green;
+                gameObject.GetComponent<MeshRenderer>().material = materials[0];
                 gameObject.transform.localScale = new Vector3(5, 5, 0.7f);
                 gameObject.name = "Ten";
 
@@ -33,6 +36,7 @@ public class TargetShatter : MonoBehaviour
                 break;
             case TargetType.pointTwenty:
                 renderer.material.color = Color.blue;
+                gameObject.GetComponent<MeshRenderer>().material = materials[1];
                 gameObject.transform.localScale = new Vector3(4, 4, 0.7f);
                 gameObject.name = "Twenty";
 
@@ -40,6 +44,7 @@ public class TargetShatter : MonoBehaviour
                 break;
             case TargetType.pointFifty:
                 renderer.material.color = Color.yellow;
+                gameObject.GetComponent<MeshRenderer>().material = materials[2];
                 gameObject.transform.localScale = new Vector3(3, 3, 0.7f);
                 gameObject.name = "Fifty";
 
@@ -47,6 +52,7 @@ public class TargetShatter : MonoBehaviour
                 break;
             case TargetType.pointHundred:
                 renderer.material.color = Color.cyan;
+                gameObject.GetComponent<MeshRenderer>().material = materials[3];
                 gameObject.transform.localScale = new Vector3(2, 2, 0.7f);
                 gameObject.name = "Hundred";
 
@@ -54,6 +60,7 @@ public class TargetShatter : MonoBehaviour
                 break;
             case TargetType.pointThousand:
                 renderer.material.color = Color.white;
+                gameObject.GetComponent<MeshRenderer>().material = materials[4];
                 gameObject.transform.localScale = new Vector3(1, 1, 0.3f);
                 gameObject.name = "Thousand";
 

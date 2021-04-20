@@ -9,6 +9,8 @@ public class ColorRenderer : MonoBehaviour
     Renderer renderer;
     public TargetType targetTypes = TargetType.green;
 
+    [SerializeField] Material[] materials = new Material[5];
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,18 +21,23 @@ public class ColorRenderer : MonoBehaviour
         {
             case TargetType.green:
                 renderer.material.color = Color.green;
+                gameObject.GetComponent<MeshRenderer>().material = materials[0];
                 break;
             case TargetType.blue:
                 renderer.material.color = Color.blue;
+                gameObject.GetComponent<MeshRenderer>().material = materials[1];
                 break;
             case TargetType.yellow:
                 renderer.material.color = Color.yellow;
+                gameObject.GetComponent<MeshRenderer>().material = materials[2];
                 break;
             case TargetType.cyan:
                 renderer.material.color = Color.cyan;
+                gameObject.GetComponent<MeshRenderer>().material = materials[3];
                 break;
             case TargetType.white:
                 renderer.material.color = Color.white;
+                gameObject.GetComponent<MeshRenderer>().material = materials[4];
                 break;
         }
 

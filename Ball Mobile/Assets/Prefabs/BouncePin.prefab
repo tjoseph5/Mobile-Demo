@@ -10,12 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 3388020670747255865}
   - component: {fileID: 2922294804900427860}
+  - component: {fileID: 3135066400230890332}
   m_Layer: 0
   m_Name: BouncePin
   m_TagString: Ricochet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3388020670747255865
 Transform:
@@ -45,6 +46,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.2204185, y: 2.1268904, z: 2.2738042}
   m_Center: {x: -0.07588188, y: 1.10229, z: 0.030741453}
+--- !u!205 &3135066400230890332
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2616444555232444035}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers: []
+  m_Enabled: 1
 --- !u!1 &3681133854446927304
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,7 +86,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6128892151288777929
 Transform:
@@ -103,7 +128,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6fb36655438197e40ae4c04c2c49e55e, type: 2}
+  - {fileID: 2100000, guid: c3ba2341fcd2ac94f9102db1a52b89e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

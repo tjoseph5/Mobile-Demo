@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1210085176017948985}
   - component: {fileID: 507362699171247248}
   - component: {fileID: 507362699171247251}
-  - component: {fileID: 1298225847226366399}
   - component: {fileID: -1870000127352457412}
   m_Layer: 0
   m_Name: Target
@@ -122,22 +121,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 6d8bf47e8fc841842b5b7bbe05648399, type: 2}
   - {fileID: 2100000, guid: 3e24d353855490245b3f2c918799bf64, type: 2}
   - {fileID: 2100000, guid: 2f7e094afdebd6545b0d1c22870e06e2, type: 2}
---- !u!54 &1298225847226366399
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 850030783156170988}
-  serializedVersion: 2
-  m_Mass: 10
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
+  sparks: {fileID: 9193670546053952710, guid: de527be363ac4614ba02fcfc7139bae6, type: 3}
 --- !u!205 &-1870000127352457412
 LODGroup:
   m_ObjectHideFlags: 0

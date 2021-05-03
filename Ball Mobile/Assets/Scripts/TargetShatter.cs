@@ -13,8 +13,11 @@ public class TargetShatter : MonoBehaviour
     public TargetType targetTypes = TargetType.pointTen;
 
     int score; //score the player recieves when the target is hit
+    TargetManager targetManager;
 
     [SerializeField] Material[] materials = new Material[5];
+
+    [SerializeField] ParticleSystem sparks;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +25,7 @@ public class TargetShatter : MonoBehaviour
 
         renderer = gameObject.GetComponent<Renderer>();
         playerBall = GameObject.FindGameObjectWithTag("Player");
+        targetManager = GameObject.Find("Target Manager").GetComponent<TargetManager>();
 
         //This switch enum defines each list variable's score amount, size, color, and name
         switch (targetTypes)
@@ -88,22 +92,35 @@ public class TargetShatter : MonoBehaviour
             switch (targetTypes) //Instantiates different shattered target types depending on their variable
             {
                 case TargetType.pointTen:
+                    gameObject.GetComponent<MeshCollider>().enabled = false;
                     Instantiate(destroyedVersion[0], transform.position, transform.rotation);
+                    targetManager.ten += 1;
                     break;
                 case TargetType.pointTwenty:
+                    gameObject.GetComponent<MeshCollider>().enabled = false;
                     Instantiate(destroyedVersion[1], transform.position, transform.rotation);
+                    targetManager.twenty += 1;
                     break;
                 case TargetType.pointFifty:
+                    gameObject.GetComponent<MeshCollider>().enabled = false;
                     Instantiate(destroyedVersion[2], transform.position, transform.rotation);
+                    targetManager.fifty += 1;
                     break;
                 case TargetType.pointHundred:
+                    gameObject.GetComponent<MeshCollider>().enabled = false;
                     Instantiate(destroyedVersion[3], transform.position, transform.rotation);
+                    targetManager.hundred += 1;
                     break;
                 case TargetType.pointThousand:
+                    gameObject.GetComponent<MeshCollider>().enabled = false;
                     Instantiate(destroyedVersion[4], transform.position, transform.rotation);
+                    targetManager.thousand += 1;
                     break;
             }
-            StartCoroutine(DestroyBuildDestroy());
+            Instantiate(sparks, playerBall.transform.position, playerBall.transform.rotation);
+            targetManager.levelScore += score;
+            //StartCoroutine(DestroyBuildDestroy());
+            Destroy(gameObject);
         }
     }
 
@@ -111,7 +128,7 @@ public class TargetShatter : MonoBehaviour
     IEnumerator DestroyBuildDestroy()
     {
         gameObject.SetActive(false); //This propertly removes the gameObject from the WindZones before being destroyed. Without this, the game would be constantly trying to access gameObjects that no longer exist, causing a memory leak 
-        yield return new WaitForSeconds(1f); //Makes sure the previous line of code occurs first before completely deleting the object
+        yield return new WaitForSeconds(5f); //Makes sure the previous line of code occurs first before completely deleting the object
         Destroy(gameObject);
     }
 }

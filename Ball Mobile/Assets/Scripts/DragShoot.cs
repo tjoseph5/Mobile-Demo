@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class DragShoot : MonoBehaviour
 {
@@ -18,8 +18,10 @@ public class DragShoot : MonoBehaviour
     public float forceMultiplier; //Float Variable that is used to multiply the Shoot() Force Vector 3 results. Essentially adds extra force to the ball for it to launch
 
     public float speed; //Float that determines the speed of the ball's left and right movement
-    public float moveLeft; //Float that limits the amount of time the player can turn left in a round
-    public float moveRight; //Float that limits the amount of time the player can turn right in a round
+    //public float moveLeft; //Float that limits the amount of time the player can turn left in a round
+    //public float moveRight; //Float that limits the amount of time the player can turn right in a round
+    public float moveMeter; //Float that limits the amount of time the player can turn in a round
+    [SerializeField] Slider movementMeterUI;
 
     public TimeManager timeManager; //The time manager gameObject. This is used to call the slow motion effect whenever the player move left or right
     public float waitForMove; //Prevents the ball from entering slow motion at the start of getting launched
@@ -37,6 +39,14 @@ public class DragShoot : MonoBehaviour
 
     bool canFlick;
 
+    [Range(0,3)] int lives;
+    GameObject livesUI;
+
+    TargetManager targetManager;
+
+    [SerializeField] Canvas inGameUI;
+    [SerializeField] Canvas postGameMenuUI;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>(); //Sets rb to player rigidbody
@@ -45,11 +55,22 @@ public class DragShoot : MonoBehaviour
         playerInCannon = false;
         starterPlane = GameObject.FindGameObjectWithTag("Start Plane"); //Gets the plane that the player is spawned on
         spawnPoint = GameObject.FindGameObjectWithTag("Spawn Point").transform;
+        targetManager = GameObject.Find("Target Manager").GetComponent<TargetManager>();
         canFlick = false;
+
+        livesUI = GameObject.Find("Lives");
+        lives = 3;
+
+        inGameUI.gameObject.SetActive(true);
+        postGameMenuUI.transform.GetChild(1).gameObject.SetActive(false);
+        postGameMenuUI.transform.GetChild(0).gameObject.SetActive(false);
+
     }
 
     private void Update()
     {
+        LivesUI(lives);
+        movementMeterUI.value = moveMeter;
         ballVelocity = rb.velocity.magnitude; //Sets ballVelocity to rb's velocity
         ballHeightVelocity = rb.velocity.y; //Sets ballHeightVelocity to rb's y velocity
 
@@ -102,11 +123,13 @@ public class DragShoot : MonoBehaviour
             }
 
             //Checks if the player is touching the left side of the screen after launching the ball. This will grant them the ability to dictate the ball to the left side of the x axis (moving the ball left)
-            if (touch.position.x < Screen.width/2 && canMove && moveLeft > 0)
+            if (touch.position.x < Screen.width/2 && canMove && moveMeter > 0)
             {
                 //transform.Translate(-speed * Time.unscaledDeltaTime, 0, 0);
                 rb.AddForce(-speed, 0, 0);
                 //moveLeft -= 1 * Time.deltaTime;
+                moveMeter -= 1 * Time.unscaledDeltaTime;
+                //rb.AddForce(transform.TransformPoint(-Vector3.right * speed));
 
                 if (isShoot && canMove && waitForMove <= 0) //Slow Motion effect
                 {
@@ -116,11 +139,13 @@ public class DragShoot : MonoBehaviour
             }
 
             //Checks if the player is touching the right side of the screen after launching the ball. This will grant them the ability to dictate the ball to the right side of the x axis (moving the ball right)
-            if (touch.position.x > Screen.width / 2 && canMove && moveRight > 0)
+            if (touch.position.x > Screen.width / 2 && canMove && moveMeter > 0)
             {
                 //transform.Translate(speed * Time.unscaledDeltaTime, 0, 0);
                 rb.AddForce(speed, 0, 0);
                 //moveRight -= 0.1f;
+                moveMeter -= 1 * Time.unscaledDeltaTime;
+                //rb.AddForce(transform.TransformPoint(Vector3.right * speed));
 
                 if (isShoot && canMove && waitForMove <= 0) //Slow Motion effect
                 {
@@ -177,7 +202,7 @@ public class DragShoot : MonoBehaviour
             rb.AddForce(new Vector3(Force.x, Force.y, z: Force.y) * forceMultiplier);
             isShoot = true;
             canMove = true;
-
+            lives -= 1;
             starterPlane.SetActive(false); //disables the plane gameObject
         }
 
@@ -185,10 +210,30 @@ public class DragShoot : MonoBehaviour
 
     IEnumerator GameRestart()
     {
-        starterPlane.SetActive(true);
-        yield return new WaitForSeconds(1f);
-        Respawn(spawnPoint);
-        gameObject.transform.eulerAngles = Vector3.zero;
+        if(lives >= 1 && !targetManager.targetsCompleted)
+        {
+            starterPlane.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            Respawn(spawnPoint);
+            gameObject.transform.eulerAngles = Vector3.zero;
+            targetManager.CannonReposition();
+        } 
+        else if(lives <= 0 && !targetManager.targetsCompleted)
+        {
+            Debug.Log("gameover ui appears");
+            inGameUI.enabled = false;
+            postGameMenuUI.transform.GetChild(0).gameObject.SetActive(true);
+            postGameMenuUI.transform.GetChild(1).gameObject.SetActive(false);
+            canMove = false;
+        }
+        else if (targetManager.targetsCompleted)
+        {
+            Debug.Log("next Level ui appears");
+            inGameUI.enabled = false;
+            postGameMenuUI.transform.GetChild(1).gameObject.SetActive(true);
+            postGameMenuUI.transform.GetChild(0).gameObject.SetActive(false);
+            canMove = false;
+        }
     }
 
     
@@ -199,10 +244,38 @@ public class DragShoot : MonoBehaviour
             isShoot = false;
             canMove = false;
             waitForMove = 1;
+            moveMeter = 50;
             gameObject.transform.position = transform.position;
             gameObject.transform.rotation = transform.rotation;
         }
         
+    }
+
+    void LivesUI(int lives)
+    {
+        switch (lives)
+        {
+            case 0:
+                livesUI.transform.GetChild(0).gameObject.SetActive(false);
+                livesUI.transform.GetChild(1).gameObject.SetActive(false);
+                livesUI.transform.GetChild(2).gameObject.SetActive(false);
+                break;
+            case 1:
+                livesUI.transform.GetChild(0).gameObject.SetActive(true);
+                livesUI.transform.GetChild(1).gameObject.SetActive(false);
+                livesUI.transform.GetChild(2).gameObject.SetActive(false);
+                break;
+            case 2:
+                livesUI.transform.GetChild(0).gameObject.SetActive(true);
+                livesUI.transform.GetChild(1).gameObject.SetActive(true);
+                livesUI.transform.GetChild(2).gameObject.SetActive(false);
+                break;
+            case 3:
+                livesUI.transform.GetChild(0).gameObject.SetActive(true);
+                livesUI.transform.GetChild(1).gameObject.SetActive(true);
+                livesUI.transform.GetChild(2).gameObject.SetActive(true);
+                break;
+        }
     }
 
 

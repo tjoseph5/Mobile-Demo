@@ -11,6 +11,10 @@ public class WindZone : MonoBehaviour
 
     public float windStrength; //strength of each windzone.
 
+    private void Update()
+    {
+        WindZoneRbs.RemoveAll(WindZoneRbs => WindZoneRbs == null);
+    }
 
     //This adds any gameObject with a rigidbody component to the WindZoneRbs list on collision
     private void OnTriggerEnter(Collider other)

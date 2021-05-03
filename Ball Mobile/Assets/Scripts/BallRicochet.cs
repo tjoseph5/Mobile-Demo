@@ -10,6 +10,8 @@ public class BallRicochet : MonoBehaviour
 
     public float speedStrengh; //Sets the knockback strength of the object
 
+    [SerializeField] ParticleSystem sparks;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -24,6 +26,7 @@ public class BallRicochet : MonoBehaviour
     {
         if(collision.gameObject.tag == "Ricochet")
         {
+            Instantiate(sparks, collision.gameObject.transform.position, collision.gameObject.transform.rotation);
             var speed = lastVelocity.magnitude * speedStrengh; //Multiples the ball velocity's magnitude by the speedStrength to essentially double the ricochet effect 
             var direction = Vector3.Reflect(lastVelocity.normalized, collision.contacts[0].normal); //I'm still new to Vector3.Reflect so I don't exactly what's happening other than knowing that this sets the ball in the opposite direction from lastVelocity
 

@@ -7,7 +7,7 @@ public class Cannon : MonoBehaviour
     private Transform shotPos; //Player's set position when entering a cannon
     GameObject playerBall; //the Player Ball
     DragShoot playerBallVel; //The velocity of the player ball
-    bool inMyCannon; //Specifies if the player has entered an indivisual cannon rather than any regular cannon (this fixes a glitch that causes the player to only launch from the latest cannon direction)
+    [HideInInspector] public bool inMyCannon; //Specifies if the player has entered an indivisual cannon rather than any regular cannon (this fixes a glitch that causes the player to only launch from the latest cannon direction)
     CannonMovement cannonMovement; //The CannonMovement script that allows some cannons to move depending on their state
 
     public float cannonstrength; //Launch strength
@@ -54,6 +54,7 @@ public class Cannon : MonoBehaviour
                         playerBall.transform.position = shotPos.transform.position;
                         playerBall.transform.rotation = shotPos.transform.rotation;
                         playerBallVel.canMove = false;
+                        playerBall.GetComponent<Rigidbody>().velocity = Vector3.zero;
                         playerBallVel.waitForMove = 3;
                     }
                     break;
@@ -90,6 +91,8 @@ public class Cannon : MonoBehaviour
 
     void CannonFire() //A function that launches the ball
     {
+        var fireFX = GetComponentsInChildren<ParticleSystem>();
+
         if (playerBallVel.isShoot && playerBallVel.playerInCannon)
         {
             playerBallVel.playerInCannon = false; //Stops ball from being frozen in one position
@@ -97,8 +100,13 @@ public class Cannon : MonoBehaviour
             playerBall.GetComponent<Rigidbody>().velocity = cannonstrength * shotDirection;
             inMyCannon = false;
             gameObject.GetComponent<CannonMovement>().direction = CannonMovement.DirectionalMovement.idle; //Sets the cannon's movement state back to zero
+            
+            foreach(var explosion in fireFX)
+            {
+                explosion.Play();
+            }
+
             playerBallVel.timeManager.DoSlowmotion(); //Triggers a 2 second slowmotion effect from the TimeManager script
         }
-
     }
 }

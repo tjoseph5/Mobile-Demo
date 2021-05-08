@@ -89,6 +89,9 @@ public class TargetShatter : MonoBehaviour
     {
         if(collision.gameObject == playerBall)
         {
+            targetManager.levelScore += score;
+            //StartCoroutine(DestroyBuildDestroy());
+            Destroy(gameObject);
             switch (targetTypes) //Instantiates different shattered target types depending on their variable
             {
                 case TargetType.pointTen:
@@ -118,9 +121,6 @@ public class TargetShatter : MonoBehaviour
                     break;
             }
             Instantiate(sparks, playerBall.transform.position, playerBall.transform.rotation);
-            targetManager.levelScore += score;
-            //StartCoroutine(DestroyBuildDestroy());
-            Destroy(gameObject);
         }
     }
 

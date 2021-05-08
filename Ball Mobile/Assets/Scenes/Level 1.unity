@@ -1419,7 +1419,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 483714945}
         m_MethodName: LevelRestart
         m_Mode: 1
         m_Arguments:
@@ -2030,7 +2030,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.18442576, y: 0.0005251555, z: -0.00009854257, w: 0.9828463}
+  m_LocalRotation: {x: 0.18442576, y: 0.00052515545, z: -0.00009854258, w: 0.9828463}
   m_LocalPosition: {x: 40.110672, y: 25.823088, z: -6.725214}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2661,7 +2661,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 483714945}
         m_MethodName: NextLevel
         m_Mode: 1
         m_Arguments:
@@ -3683,7 +3683,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1896547015}
-  m_LocalRotation: {x: 0.18442576, y: 0.0005251555, z: -0.00009854257, w: 0.9828463}
+  m_LocalRotation: {x: 0.18442576, y: 0.00052515545, z: -0.00009854258, w: 0.9828463}
   m_LocalPosition: {x: 40.110672, y: 25.823088, z: -6.725214}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

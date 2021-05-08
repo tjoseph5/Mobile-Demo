@@ -110,11 +110,6 @@ public class DragShoot : MonoBehaviour
 
             if (touch.phase == TouchPhase.Ended) //Checks to see if the player is no longer touching the screen after touching it
             {
-                if(canFlick == true)
-                {
-                    DragRelease();
-                }
-
                 if (isShoot) //Keeps the game from continuously remaining in slowmotion after the player is no longer moving left or right
                 {
                     timeManager.UndoSlowmotion(); //Function from the TimeManager script that sets time back to normal
@@ -174,6 +169,15 @@ public class DragShoot : MonoBehaviour
         {
             rb.velocity = Vector3.ClampMagnitude(rb.velocity, velocityCap);
         }
+
+        if (touch.phase == TouchPhase.Ended) //Checks to see if the player is no longer touching the screen after touching it
+        {
+            if (canFlick == true)
+            {
+                DragRelease();
+            }
+        }
+
     }
 
     void DragStart()

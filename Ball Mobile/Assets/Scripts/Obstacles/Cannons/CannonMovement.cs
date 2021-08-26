@@ -39,9 +39,9 @@ public class CannonMovement : MonoBehaviour
         switch (direction) //Defines each state (refer to the comments above)
         {
             case DirectionalMovement.idle: transform.Translate(0, 0, 0); break;
-            case DirectionalMovement.forward_backward: transform.Translate(speed * Time.deltaTime, 0, 0); break;
-            case DirectionalMovement.up_down: transform.Translate(0, speed * Time.deltaTime, 0); break;
-            case DirectionalMovement.left_right: transform.Translate(0, 0, speed * Time.deltaTime); break;
+            case DirectionalMovement.forward_backward: transform.Translate(0, 0, speed * Time.deltaTime, Space.World); break;
+            case DirectionalMovement.up_down: transform.Translate(0, speed * Time.deltaTime, 0, Space.World); break;
+            case DirectionalMovement.left_right: transform.Translate(speed * Time.deltaTime, 0, 0, Space.World); break;
         }
 
         if (timer >= flipTimer) //Checks to see if the timer surpasses flipTimer. The cannon will move the opposite direction if the timer surpasses the flipTimer 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7517166586719895913}
   - component: {fileID: 7517166586719895927}
   - component: {fileID: 7517166586719895912}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wind Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

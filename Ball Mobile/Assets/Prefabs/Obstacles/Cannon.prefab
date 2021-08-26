@@ -14553,6 +14553,7 @@ MonoBehaviour:
   inMyCannon: 0
   cannonstrength: 50
   movementSpeed: 0
+  shotTrajectoryPos: {x: 0, y: 0, z: 0}
 --- !u!114 &7014720944844388968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14620,8 +14621,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9168749839473751909}
   m_LocalRotation: {x: -0, y: -0.7076376, z: -0, w: 0.7065756}
-  m_LocalPosition: {x: 0.25, y: -0.03, z: -0.01}
-  m_LocalScale: {x: 0.11817179, y: 0.18529975, z: 0.13193429}
+  m_LocalPosition: {x: -0.802, y: 0.011, z: 0.0024}
+  m_LocalScale: {x: 0.11843376, y: 0.1217493, z: 0.13193429}
   m_Children: []
   m_Father: {fileID: 8698500490063970426}
   m_RootOrder: 1
@@ -14665,7 +14666,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f4c65011fb99ec3498c9c9815a524376, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0143b2ab9f9cc8046beee4210ea4d4ae, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0

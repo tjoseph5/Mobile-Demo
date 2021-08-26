@@ -11,6 +11,9 @@ TagManager:
   - Start Plane
   - shards
   - Spawn Point
+  - Standard Camera
+  - Shoot Camera
+  - Free Camera
   layers:
   - Default
   - TransparentFX
@@ -21,7 +24,7 @@ TagManager:
   - 
   - 
   - Post-Processing
-  - 
+  - Windzones
   - 
   - 
   - 

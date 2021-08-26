@@ -7,13 +7,15 @@ public class Cannon : MonoBehaviour
     private Transform shotPos; //Player's set position when entering a cannon
     GameObject playerBall; //the Player Ball
     DragShoot playerBallVel; //The velocity of the player ball
-    [HideInInspector] public bool inMyCannon; //Specifies if the player has entered an indivisual cannon rather than any regular cannon (this fixes a glitch that causes the player to only launch from the latest cannon direction)
+    public bool inMyCannon; //Specifies if the player has entered an indivisual cannon rather than any regular cannon (this fixes a glitch that causes the player to only launch from the latest cannon direction)
     CannonMovement cannonMovement; //The CannonMovement script that allows some cannons to move depending on their state
 
     public float cannonstrength; //Launch strength
     Vector3 shotDirection = -Vector3.right; //the Direction of the launch/cannon
 
     public float movementSpeed; //the speed of the Cannon's movement
+
+    public Vector3 shotTrajectoryPos;
 
     void Start()
     {
@@ -23,6 +25,8 @@ public class Cannon : MonoBehaviour
         playerBallVel = playerBall.GetComponent<DragShoot>();
         cannonMovement = gameObject.GetComponent<CannonMovement>();
         gameObject.name = "Cannon";
+
+        shotTrajectoryPos = new Vector3(1, 1, 1);
     }
 
 
@@ -55,7 +59,7 @@ public class Cannon : MonoBehaviour
                         playerBall.transform.rotation = shotPos.transform.rotation;
                         playerBallVel.canMove = false;
                         playerBall.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                        playerBallVel.waitForMove = 3;
+                        //playerBallVel.waitForMove = 3;
                     }
                     break;
 
@@ -71,7 +75,7 @@ public class Cannon : MonoBehaviour
     //Dictates the following events of the player ball entering a cannon
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player" && playerBallVel.waitForMove == 0)
+        if(other.gameObject.tag == "Player" /*&& playerBallVel.waitForMove == 0*/)
         {
             playerBallVel.playerInCannon = true;
             inMyCannon = true;
@@ -100,8 +104,10 @@ public class Cannon : MonoBehaviour
             playerBall.GetComponent<Rigidbody>().velocity = cannonstrength * shotDirection;
             inMyCannon = false;
             gameObject.GetComponent<CannonMovement>().direction = CannonMovement.DirectionalMovement.idle; //Sets the cannon's movement state back to zero
-            
-            foreach(var explosion in fireFX)
+
+            //LineTrajectory.Instance.HideLine();
+
+            foreach (var explosion in fireFX)
             {
                 explosion.Play();
             }

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class DragShoot : MonoBehaviour
 {
+    public static DragShoot dragShoot;
+
     public Rigidbody rb; //Player Rigidbody
 
     public Vector3 dragStartPos; //The vector3 that is equal to the player's start touch position
@@ -18,13 +20,11 @@ public class DragShoot : MonoBehaviour
     public float forceMultiplier; //Float Variable that is used to multiply the Shoot() Force Vector 3 results. Essentially adds extra force to the ball for it to launch
 
     public float speed; //Float that determines the speed of the ball's left and right movement
-    //public float moveLeft; //Float that limits the amount of time the player can turn left in a round
-    //public float moveRight; //Float that limits the amount of time the player can turn right in a round
     public float moveMeter; //Float that limits the amount of time the player can turn in a round
     [SerializeField] Slider movementMeterUI;
 
     public TimeManager timeManager; //The time manager gameObject. This is used to call the slow motion effect whenever the player move left or right
-    public float waitForMove; //Prevents the ball from entering slow motion at the start of getting launched
+    //public float waitForMove; //Prevents the ball from entering slow motion at the start of getting launched
 
     public float ballVelocity; //Gets the ball's rigidbody velocity
 
@@ -37,7 +37,7 @@ public class DragShoot : MonoBehaviour
     GameObject starterPlane; // The plane where the ball is spawned on
     public Transform spawnPoint;
 
-    bool canFlick;
+    [SerializeField] bool canFlick;
 
     [Range(0,3)] int lives;
     GameObject livesUI;
@@ -46,6 +46,11 @@ public class DragShoot : MonoBehaviour
 
     [SerializeField] Canvas inGameUI;
     [SerializeField] Canvas postGameMenuUI;
+
+    void Awake()
+    {
+        dragShoot = this;
+    }
 
     private void Start()
     {
@@ -64,6 +69,7 @@ public class DragShoot : MonoBehaviour
         inGameUI.gameObject.SetActive(true);
         postGameMenuUI.transform.GetChild(1).gameObject.SetActive(false);
         postGameMenuUI.transform.GetChild(0).gameObject.SetActive(false);
+
 
     }
 
@@ -90,23 +96,38 @@ public class DragShoot : MonoBehaviour
                 Ray ray = Camera.main.ScreenPointToRay(Input.touches[0].position);
                 RaycastHit hit;
 
-                if(Physics.Raycast(ray, out hit))
+                if (Physics.Raycast(ray, out hit))
                 {
-                    if(hit.collider != null)
+                    if (hit.collider != null)
                     {
-                        if(hit.collider.gameObject.name == "Main Ball")
+                        if (hit.collider.gameObject.name == "Main Ball" && isShoot == false)
                         {
-                            Debug.Log("the ball is being touched");
-                            DragStart();
+                            if(CameraManager.cameraManager.camFreeMode == false)
+                            {
+                                Debug.Log("the ball is being touched");
+                                DragStart();
+                            }
                         }
                     }
-                }  
+                }
             }
 
-            /*if (touch.phase == TouchPhase.Moved)
+            if(touch.phase == TouchPhase.Moved)
             {
-                Dragging();
-            }*/
+                Vector3 touchPos_V3 = touch.position;
+                Vector3 forceInit = touchPos_V3 - dragStartPos;
+                Vector3 forceV = (new Vector3(forceInit.x, forceInit.y, forceInit.y) * forceMultiplier);
+
+                if (!isShoot && canFlick)
+                {
+                    LineTrajectory.Instance.UpdateTrajectory(forceVector: forceV, rb, startingPoint: transform.position);
+                }
+
+                if(touch.position.y > dragStartPos.y + 3.5f)
+                {
+                    LineTrajectory.Instance.HideLine();
+                }
+            }
 
             if (touch.phase == TouchPhase.Ended) //Checks to see if the player is no longer touching the screen after touching it
             {
@@ -114,52 +135,51 @@ public class DragShoot : MonoBehaviour
                 {
                     timeManager.UndoSlowmotion(); //Function from the TimeManager script that sets time back to normal
                 }
-                
+
             }
 
             //Checks if the player is touching the left side of the screen after launching the ball. This will grant them the ability to dictate the ball to the left side of the x axis (moving the ball left)
-            if (touch.position.x < Screen.width/2 && canMove && moveMeter > 0)
+            if (touch.position.x < Screen.width / 2 && canMove && moveMeter > 0)
             {
-                //transform.Translate(-speed * Time.unscaledDeltaTime, 0, 0);
                 rb.AddForce(-speed, 0, 0);
-                //moveLeft -= 1 * Time.deltaTime;
                 moveMeter -= 1 * Time.unscaledDeltaTime;
-                //rb.AddForce(transform.TransformPoint(-Vector3.right * speed));
 
-                if (isShoot && canMove && waitForMove <= 0) //Slow Motion effect
+
+                if (isShoot && canMove /*&& waitForMove <= 0*/) //Slow Motion effect
                 {
                     timeManager.DoSlowmotion(); //Function from the TimeManager script that sets time to slowdown
                 }
-                
+
             }
 
             //Checks if the player is touching the right side of the screen after launching the ball. This will grant them the ability to dictate the ball to the right side of the x axis (moving the ball right)
             if (touch.position.x > Screen.width / 2 && canMove && moveMeter > 0)
             {
-                //transform.Translate(speed * Time.unscaledDeltaTime, 0, 0);
                 rb.AddForce(speed, 0, 0);
-                //moveRight -= 0.1f;
                 moveMeter -= 1 * Time.unscaledDeltaTime;
-                //rb.AddForce(transform.TransformPoint(Vector3.right * speed));
 
-                if (isShoot && canMove && waitForMove <= 0) //Slow Motion effect
+                if (isShoot && canMove /*&& waitForMove <= 0*/) //Slow Motion effect
                 {
                     timeManager.DoSlowmotion(); //Function from the TimeManager script that sets time to slowdown
                 }
             }
-        }
 
-        if (canMove && playerInCannon == false) //Subtracts waitForMove until it reaches zero. Not doing this permanately disables left and right movement
-        {
-            if (waitForMove > 0)
+            #region waitForMove related code
+            /*
+            if (canMove && playerInCannon == false) //Subtracts waitForMove until it reaches zero. Not doing this permanately disables left and right movement
             {
-                waitForMove -= 1;
+                if (waitForMove > 0)
+                {
+                    waitForMove -= 1;
+                }
+                else if (waitForMove < 0)
+                {
+                    waitForMove -= 0;
+                    waitForMove = 0;
+                }
             }
-            else if (waitForMove < 0)
-            {
-                waitForMove -= 0;
-                waitForMove = 0;
-            }
+            */
+            #endregion
         }
     }
 
@@ -177,13 +197,16 @@ public class DragShoot : MonoBehaviour
                 DragRelease();
             }
         }
-
     }
 
     void DragStart()
     {
         dragStartPos = touch.position; //Sets the dragStartPos to the player's current touch position
         canFlick = true;
+
+        CameraManager.cameraManager.cameraviews[1].SetActive(true);
+        CameraManager.cameraManager.cameraviews[0].SetActive(false);
+        CameraManager.cameraManager.cameraviews[2].SetActive(false);
     }
 
     /*void Dragging()
@@ -194,8 +217,24 @@ public class DragShoot : MonoBehaviour
     void DragRelease()
     {
         dragReleasePos = touch.position; //Sets the dragReleasePos to the player's current touch position
+        StartCoroutine(LineTrajectoryClear());
+
+        #region Back-Shotting Limiter
+        /*
+        if (dragStartPos.y >= dragReleasePos.y)
+        {
+            canFlick = false;
+            Shoot(Force: dragStartPos - dragReleasePos); //Launches the ball by using the difference between the dragStartPos and the dragReleasePos, and multiplying it by the forceMultipler float
+        }
+        */
+        #endregion
+
         canFlick = false;
         Shoot(Force: dragStartPos - dragReleasePos); //Launches the ball by using the difference between the dragStartPos and the dragReleasePos, and multiplying it by the forceMultipler float
+
+        CameraManager.cameraManager.cameraviews[0].SetActive(true);
+        CameraManager.cameraManager.cameraviews[1].SetActive(false);
+        CameraManager.cameraManager.cameraviews[2].SetActive(false);
     }
 
     //This function is used to launch the ball after the ball releases their finger from the screen at the start of the scene
@@ -240,6 +279,15 @@ public class DragShoot : MonoBehaviour
         }
     }
 
+    IEnumerator LineTrajectoryClear()
+    {
+        yield return new WaitForSeconds(5f);
+        if(isShoot == true)
+        {
+            LineTrajectory.Instance.HideLine();
+        }
+
+    }
     
     void Respawn(Transform transform)
     {
@@ -247,7 +295,7 @@ public class DragShoot : MonoBehaviour
         {
             isShoot = false;
             canMove = false;
-            waitForMove = 1;
+            //waitForMove = 1;
             moveMeter = 50;
             gameObject.transform.position = transform.position;
             gameObject.transform.rotation = transform.rotation;
@@ -255,6 +303,7 @@ public class DragShoot : MonoBehaviour
         
     }
 
+    #region Lives UI
     void LivesUI(int lives)
     {
         switch (lives)
@@ -281,8 +330,9 @@ public class DragShoot : MonoBehaviour
                 break;
         }
     }
+    #endregion
 
-
+    #region Level Reset
     //Restarts the game
     /*
     IEnumerator GameRestart()
@@ -291,4 +341,6 @@ public class DragShoot : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     */
+    #endregion
+
 }

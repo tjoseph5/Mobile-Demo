@@ -36,8 +36,6 @@ public class TargetManager : MonoBehaviour
     [SerializeField] Text targetCountUI;
     [SerializeField] Text scoreDisplayUI;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         targetsCompleted = false;

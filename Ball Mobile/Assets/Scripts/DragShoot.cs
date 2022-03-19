@@ -39,8 +39,8 @@ public class DragShoot : MonoBehaviour
 
     [SerializeField] bool canFlick;
 
-    [Range(0,3)] int lives;
-    GameObject livesUI;
+    //[Range(0,3)] int lives;
+    //GameObject livesUI;
 
     TargetManager targetManager;
 
@@ -63,8 +63,8 @@ public class DragShoot : MonoBehaviour
         targetManager = GameObject.Find("Target Manager").GetComponent<TargetManager>();
         canFlick = false;
 
-        livesUI = GameObject.Find("Lives");
-        lives = 3;
+        //livesUI = GameObject.Find("Lives");
+        //lives = 3;
 
         inGameUI.gameObject.SetActive(true);
         postGameMenuUI.transform.GetChild(1).gameObject.SetActive(false);
@@ -75,7 +75,7 @@ public class DragShoot : MonoBehaviour
 
     private void Update()
     {
-        LivesUI(lives);
+        //LivesUI(lives);
         movementMeterUI.value = moveMeter;
         ballVelocity = rb.velocity.magnitude; //Sets ballVelocity to rb's velocity
         ballHeightVelocity = rb.velocity.y; //Sets ballHeightVelocity to rb's y velocity
@@ -245,7 +245,7 @@ public class DragShoot : MonoBehaviour
             rb.AddForce(new Vector3(Force.x, Force.y, z: Force.y) * forceMultiplier);
             isShoot = true;
             canMove = true;
-            lives -= 1;
+            //lives -= 1;
             starterPlane.SetActive(false); //disables the plane gameObject
         }
 
@@ -253,7 +253,7 @@ public class DragShoot : MonoBehaviour
 
     IEnumerator GameRestart()
     {
-        if(lives >= 1 && !targetManager.targetsCompleted)
+        if(/*lives >= 1 &&*/ !targetManager.targetsCompleted)
         {
             starterPlane.SetActive(true);
             yield return new WaitForSeconds(1f);
@@ -261,7 +261,7 @@ public class DragShoot : MonoBehaviour
             gameObject.transform.eulerAngles = Vector3.zero;
             targetManager.CannonReposition();
         } 
-        else if(lives <= 0 && !targetManager.targetsCompleted)
+        else if(/*lives <= 0 &&*/ !targetManager.targetsCompleted)
         {
             Debug.Log("gameover ui appears");
             inGameUI.enabled = false;
@@ -304,6 +304,7 @@ public class DragShoot : MonoBehaviour
     }
 
     #region Lives UI
+    /*
     void LivesUI(int lives)
     {
         switch (lives)
@@ -330,6 +331,7 @@ public class DragShoot : MonoBehaviour
                 break;
         }
     }
+    */
     #endregion
 
     #region Level Reset

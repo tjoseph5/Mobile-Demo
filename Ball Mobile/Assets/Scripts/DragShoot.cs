@@ -141,7 +141,7 @@ public class DragShoot : MonoBehaviour
             //Checks if the player is touching the left side of the screen after launching the ball. This will grant them the ability to dictate the ball to the left side of the x axis (moving the ball left)
             if (touch.position.x < Screen.width / 2 && canMove && moveMeter > 0)
             {
-                rb.AddForce(-speed, 0, 0);
+                rb.AddForce(-speed, 0, 0, ForceMode.Acceleration);
                 moveMeter -= 1 * Time.unscaledDeltaTime;
 
 
@@ -155,7 +155,7 @@ public class DragShoot : MonoBehaviour
             //Checks if the player is touching the right side of the screen after launching the ball. This will grant them the ability to dictate the ball to the right side of the x axis (moving the ball right)
             if (touch.position.x > Screen.width / 2 && canMove && moveMeter > 0)
             {
-                rb.AddForce(speed, 0, 0);
+                rb.AddForce(speed, 0, 0, ForceMode.Acceleration);
                 moveMeter -= 1 * Time.unscaledDeltaTime;
 
                 if (isShoot && canMove /*&& waitForMove <= 0*/) //Slow Motion effect

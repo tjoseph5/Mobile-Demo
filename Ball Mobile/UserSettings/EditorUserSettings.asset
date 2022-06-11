@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!162 &1
+EditorUserSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 4
+  m_ConfigSettings:
+    RecentlyUsedSceneGuid-0:
+      value: 020903570700590b5c0b0d7113710d44171619792d70733628791c30e3b16d61
+      flags: 0
+    RecentlyUsedSceneGuid-1:
+      value: 510252500001500a550f0f27117a094412151b2c792d7f357d281c61b4e36739
+      flags: 0
+    RecentlyUsedSceneGuid-2:
+      value: 5155525352575c5d5b58597b15700b44454f492b287177357b2d4f63b0b86439
+      flags: 0
+    RecentlyUsedSceneGuid-3:
+      value: 0200020707515d5855565c21147b5a4442151c787b707e677b7d4a66e1b0606c
+      flags: 0
+    RecentlyUsedSceneGuid-4:
+      value: 5a5757560101590a5d0c0e24427b5d44434e4c7a7b7a23677f2b4565b7b5353a
+      flags: 0
+    UnityEditor.ShaderGraph.FloatingWindowsLayout2:
+      value: 181344140043005e1a220d3b1f364b524c0c5a27130c293326201334cee5322ca0bd30e8eb293a707b0fd0180b3d0a36fc0d3d04e649500d1002ee0b5dbd1d2c27c00ad113cb1e10e41f1addc80993b9859884a69ae6d8f0d1cda9e8fbfefaf9f9dea3fdb9ade882f0ffb0e1e380cafbf2c3adc18e9cd285a2908b87ee819c8395949c9483d38b8d97ddbd90eed2a5a892a2af949aa48bafb19f85bd75a7ed3a7d25658598b7b58bb4b76aaf777690ca2863946c72c6cd81b6b6708f9f879f88769589d91c9d9b97729b01dc6c705666734161566b54406a5d7a694a1f37713d756a66771753783a27353f4c504172674347264e2e7a16016c711e4d7d5f686758400216064d1b4f487873735e6d726f6b3f577c7a427a6579002d5170ed3627f73426d6f730ff32e8f9df0bea067daaedb5e048565c56404359b151db824e4c92975899da07
+      flags: 0
+    UnityRemoteDevice:
+      value: 225f4d46245b0d4902070862342649191512
+      flags: 0
+    vcSharedLogLevel:
+      value: 0d5e400f0650
+      flags: 0
+  m_VCAutomaticAdd: 1
+  m_VCDebugCom: 0
+  m_VCDebugCmd: 0
+  m_VCDebugOut: 0
+  m_SemanticMergeMode: 2
+  m_DesiredImportWorkerCount: 2
+  m_StandbyImportWorkerCount: 2
+  m_IdleImportWorkerShutdownDelay: 60000
+  m_VCShowFailedCheckout: 1
+  m_VCOverwriteFailedCheckoutAssets: 1
+  m_VCProjectOverlayIcons: 1
+  m_VCHierarchyOverlayIcons: 1
+  m_VCOtherOverlayIcons: 1
+  m_VCAllowAsyncUpdate: 0
+  m_ArtifactGarbageCollection: 1

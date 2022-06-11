@@ -3,7 +3,9 @@ guid: 7cf0a91923617aa459ffe51ac20fcb10
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - sparks: {instanceID: 0}
+  - targetSettings: {fileID: 11400000, guid: 85e2cb903bc9dec4a8bd9b2163e9e85b, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

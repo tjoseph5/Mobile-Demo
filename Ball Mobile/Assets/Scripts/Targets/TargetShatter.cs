@@ -19,7 +19,8 @@ public class TargetShatter : MonoBehaviour
 
     [SerializeField] ParticleSystem sparks;
 
-    // Start is called before the first frame update
+    [SerializeField] TargetSettings targetSettings;
+
     void Start()
     {
 

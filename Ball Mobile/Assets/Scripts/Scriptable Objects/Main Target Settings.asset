@@ -12,4 +12,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f7f032eff244fd40beda4e58fa74bab, type: 3}
   m_Name: Main Target Settings
   m_EditorClassIdentifier: 
-  destroyedTargets: []
+  shatteredTargetPrefab: {fileID: 8133072940775814723, guid: fef0fa8734759624f89d8b3985fd73e9,
+    type: 3}
+  shatteredParticleEffect: {fileID: 9193670546053952710, guid: de527be363ac4614ba02fcfc7139bae6,
+    type: 3}
+  fragileShatteredBF: 3
+  normalShatteredBF: 2
+  sturdyShatteredBF: 1
+  fragileZScale: 0.2
+  normalZScale: 0.7
+  sturdyZScale: 1.5
+  tenPointName: Ten-Point Target
+  tenPointShatteredName: Ten-Point Shattered
+  tenPointScore: 10
+  tenPointScale: {x: 5, y: 5, z: 0}
+  tenPointMaterial:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  twentyPointName: Twenty-Point Target
+  twentyPointShatteredName: Twenty-Point Shattered
+  twentyPointScore: 20
+  twentyPointScale: {x: 4, y: 4, z: 0}
+  twentyPointMaterial:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  fiftyPointName: Ffity-Point Target
+  fiftyPointShatteredName: Ffity-Point Shattered
+  fiftyPointScore: 50
+  fiftyPointScale: {x: 3, y: 3, z: 0}
+  fiftyPointMaterial:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  hundredPointName: Hundred-Point Target
+  hundredPointShatteredName: Hundred-Point Shattered
+  hundredPointScore: 100
+  hundredPointScale: {x: 2, y: 2, z: 0}
+  hundredPointMaterial:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  thousandPointName: Thousand-Point Target
+  thousandPointShatteredName: Thousand-Point Shattered
+  thousandPointScore: 1000
+  thousandPointScale: {x: 1, y: 1, z: 0}
+  thousandPointMaterial:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

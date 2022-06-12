@@ -6,130 +6,268 @@ public class TargetShatter : MonoBehaviour
 {
 
     GameObject playerBall; //The player Ball
-    public GameObject [] destroyedVersion = new GameObject [5]; //The shattered versions
-    Renderer renderer; //gameObject's renderer
+    Renderer targetRenderer; //gameObject's renderer
 
-    public enum TargetType { pointTen, pointTwenty, pointFifty, pointHundred, pointThousand }; //list of different types of targets. Each variable has their own unique score variable, scales, and material color
-    public TargetType targetTypes = TargetType.pointTen;
+    public enum TargetPointTypes { pointTen, pointTwenty, pointFifty, pointHundred, pointThousand }; //list of different types of targets. Each variable has their own unique score variable, scales, and material color
+    public TargetPointTypes targetPointType = TargetPointTypes.pointTen;
+    public enum TargetDurabilityTypes { fragile, normal, sturdy };
+    public TargetDurabilityTypes targetDurabilityType;
 
     int score; //score the player recieves when the target is hit
+    float zScale;
+    float durableTypeBreakForce;
     TargetManager targetManager;
-
-    [SerializeField] Material[] materials = new Material[5];
-
-    [SerializeField] ParticleSystem sparks;
 
     [SerializeField] TargetSettings targetSettings;
 
-    void Start()
+    void Awake()
     {
-
-        renderer = gameObject.GetComponent<Renderer>();
+        targetRenderer = gameObject.GetComponent<Renderer>();
         playerBall = GameObject.FindGameObjectWithTag("Player");
         targetManager = GameObject.Find("Target Manager").GetComponent<TargetManager>();
 
-        //This switch enum defines each list variable's score amount, size, color, and name
-        switch (targetTypes)
+        switch (targetDurabilityType)
         {
-            case TargetType.pointTen:
-                renderer.material.color = Color.green;
-                gameObject.GetComponent<MeshRenderer>().material = materials[0];
-                gameObject.transform.localScale = new Vector3(5, 5, 0.7f);
-                gameObject.name = "Ten";
-
-                score = 10;
+            case TargetDurabilityTypes.fragile:
+                zScale = targetSettings.fragileZScale;
+                durableTypeBreakForce = targetSettings.fragileShatteredBF;
                 break;
-            case TargetType.pointTwenty:
-                renderer.material.color = Color.blue;
-                gameObject.GetComponent<MeshRenderer>().material = materials[1];
-                gameObject.transform.localScale = new Vector3(4, 4, 0.7f);
-                gameObject.name = "Twenty";
 
-                score = 20;
+            case TargetDurabilityTypes.normal:
+                zScale = targetSettings.normalZScale;
+                durableTypeBreakForce = targetSettings.normalShatteredBF;
                 break;
-            case TargetType.pointFifty:
-                renderer.material.color = Color.yellow;
-                gameObject.GetComponent<MeshRenderer>().material = materials[2];
-                gameObject.transform.localScale = new Vector3(3, 3, 0.7f);
-                gameObject.name = "Fifty";
 
-                score = 50;
-                break;
-            case TargetType.pointHundred:
-                renderer.material.color = Color.cyan;
-                gameObject.GetComponent<MeshRenderer>().material = materials[3];
-                gameObject.transform.localScale = new Vector3(2, 2, 0.7f);
-                gameObject.name = "Hundred";
-
-                score = 100;
-                break;
-            case TargetType.pointThousand:
-                renderer.material.color = Color.white;
-                gameObject.GetComponent<MeshRenderer>().material = materials[4];
-                gameObject.transform.localScale = new Vector3(1, 1, 0.3f);
-                gameObject.name = "Thousand";
-
-                score = 1000;
+            case TargetDurabilityTypes.sturdy:
+                zScale = targetSettings.sturdyZScale;
+                durableTypeBreakForce = targetSettings.sturdyShatteredBF;
                 break;
         }
-
-        /* //Sets localScale of instantiated shatter object to the gameObject's current scale vectors
-        foreach (GameObject gameObj in destroyedVersion)
-        {
-            gameObj.GetComponentInChildren<Transform>().localScale = gameObject.transform.localScale;
-        }
-        */
     }
 
-    void Update()
+    void Start()
     {
-        
+        //This switch enum defines each list variable's score amount, size, color, and name
+        switch (targetPointType)
+        {
+            case TargetPointTypes.pointTen:
+                gameObject.transform.localScale = new Vector3(targetSettings.tenPointScale.x, targetSettings.tenPointScale.y, zScale);
+                gameObject.name = targetSettings.tenPointName;
+                score = targetSettings.tenPointScore;
+
+                switch (targetDurabilityType)
+                {
+                    case TargetDurabilityTypes.fragile:
+                        gameObject.GetComponent<MeshRenderer>().material = targetSettings.tenPointMaterial[0];
+                        break;
+
+                    case TargetDurabilityTypes.normal:
+                        gameObject.GetComponent<MeshRenderer>().material = targetSettings.tenPointMaterial[1];
+                        break;
+
+                    case TargetDurabilityTypes.sturdy:
+                        gameObject.GetComponent<MeshRenderer>().material = targetSettings.tenPointMaterial[2];
+                        break;
+                }
+                break;
+
+            case TargetPointTypes.pointTwenty:
+                gameObject.transform.localScale = new Vector3(targetSettings.twentyPointScale.x, targetSettings.twentyPointScale.y, zScale);
+                gameObject.name = targetSettings.twentyPointName;
+                score = targetSettings.twentyPointScore;
+
+                switch (targetDurabilityType)
+                {
+                    case TargetDurabilityTypes.fragile:
+                        gameObject.GetComponent<MeshRenderer>().material = targetSettings.twentyPointMaterial[0];
+                        break;
+
+                    case TargetDurabilityTypes.normal:
+                        gameObject.GetComponent<MeshRenderer>().material = targetSettings.twentyPointMaterial[1];
+                        break;
+
+                    case TargetDurabilityTypes.sturdy:
+                        gameObject.GetComponent<MeshRenderer>().material = targetSettings.twentyPointMaterial[2];
+                        break;
+                }
+                break;
+
+            case TargetPointTypes.pointFifty:
+                gameObject.transform.localScale = new Vector3(targetSettings.fiftyPointScale.x, targetSettings.fiftyPointScale.y, zScale);
+                gameObject.name = targetSettings.fiftyPointName;
+                score = targetSettings.fiftyPointScore;
+
+                switch (targetDurabilityType)
+                {
+                    case TargetDurabilityTypes.fragile:
+                        gameObject.GetComponent<MeshRenderer>().material = targetSettings.fiftyPointMaterial[0];
+                        break;
+
+                    case TargetDurabilityTypes.normal:
+                        gameObject.GetComponent<MeshRenderer>().material = targetSettings.fiftyPointMaterial[1];
+                        break;
+
+                    case TargetDurabilityTypes.sturdy:
+                        gameObject.GetComponent<MeshRenderer>().material = targetSettings.fiftyPointMaterial[2];
+                        break;
+                }
+                break;
+
+            case TargetPointTypes.pointHundred:
+                gameObject.transform.localScale = new Vector3(targetSettings.hundredPointScale.x, targetSettings.hundredPointScale.y, zScale);
+                gameObject.name = targetSettings.hundredPointName;
+                score = targetSettings.hundredPointScore;
+
+                switch (targetDurabilityType)
+                {
+                    case TargetDurabilityTypes.fragile:
+                        gameObject.GetComponent<MeshRenderer>().material = targetSettings.hundredPointMaterial[0];
+                        break;
+
+                    case TargetDurabilityTypes.normal:
+                        gameObject.GetComponent<MeshRenderer>().material = targetSettings.hundredPointMaterial[1];
+                        break;
+
+                    case TargetDurabilityTypes.sturdy:
+                        gameObject.GetComponent<MeshRenderer>().material = targetSettings.hundredPointMaterial[2];
+                        break;
+                }
+                break;
+
+            case TargetPointTypes.pointThousand:
+                gameObject.transform.localScale = new Vector3(targetSettings.thousandPointScale.x, targetSettings.thousandPointScale.y, zScale);
+                gameObject.name = targetSettings.thousandPointName;
+                score = targetSettings.thousandPointScore;
+
+                switch (targetDurabilityType)
+                {
+                    case TargetDurabilityTypes.fragile:
+                        gameObject.GetComponent<MeshRenderer>().material = targetSettings.thousandPointMaterial[0];
+                        break;
+
+                    case TargetDurabilityTypes.normal:
+                        gameObject.GetComponent<MeshRenderer>().material = targetSettings.thousandPointMaterial[1];
+                        break;
+
+                    case TargetDurabilityTypes.sturdy:
+                        gameObject.GetComponent<MeshRenderer>().material = targetSettings.thousandPointMaterial[2];
+                        break;
+                }
+                break;
+        }
     }
 
     void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject == playerBall)
         {
-            targetManager.levelScore += score;
-            //StartCoroutine(DestroyBuildDestroy());
-            Destroy(gameObject);
-            switch (targetTypes) //Instantiates different shattered target types depending on their variable
-            {
-                case TargetType.pointTen:
-                    gameObject.GetComponent<MeshCollider>().enabled = false;
-                    Instantiate(destroyedVersion[0], transform.position, transform.rotation);
-                    targetManager.ten += 1;
-                    break;
-                case TargetType.pointTwenty:
-                    gameObject.GetComponent<MeshCollider>().enabled = false;
-                    Instantiate(destroyedVersion[1], transform.position, transform.rotation);
-                    targetManager.twenty += 1;
-                    break;
-                case TargetType.pointFifty:
-                    gameObject.GetComponent<MeshCollider>().enabled = false;
-                    Instantiate(destroyedVersion[2], transform.position, transform.rotation);
-                    targetManager.fifty += 1;
-                    break;
-                case TargetType.pointHundred:
-                    gameObject.GetComponent<MeshCollider>().enabled = false;
-                    Instantiate(destroyedVersion[3], transform.position, transform.rotation);
-                    targetManager.hundred += 1;
-                    break;
-                case TargetType.pointThousand:
-                    gameObject.GetComponent<MeshCollider>().enabled = false;
-                    Instantiate(destroyedVersion[4], transform.position, transform.rotation);
-                    targetManager.thousand += 1;
-                    break;
-            }
-            Instantiate(sparks, playerBall.transform.position, playerBall.transform.rotation);
+            ShatterFunction();
         }
     }
 
-    //Destroys gameObject after 1 second and deactivates it. No, I don't know why I named this Coroutine after that one live action Cartoon Network show starring Andrew W.K.
-    IEnumerator DestroyBuildDestroy()
+    void ShatterFunction()
     {
-        gameObject.SetActive(false); //This propertly removes the gameObject from the WindZones before being destroyed. Without this, the game would be constantly trying to access gameObjects that no longer exist, causing a memory leak 
-        yield return new WaitForSeconds(5f); //Makes sure the previous line of code occurs first before completely deleting the object
         Destroy(gameObject);
+        targetManager.levelScore += score;
+
+        switch (targetPointType) //Instantiates different shattered target types depending on their variable
+        {
+            case TargetPointTypes.pointTen:
+
+                GameObject tenShattered = Instantiate(targetSettings.shatteredTargetPrefab, this.transform.position, this.transform.rotation);
+                tenShattered.transform.localScale = new Vector3(targetSettings.tenPointScale.x, targetSettings.tenPointScale.y, zScale);
+
+                foreach (Renderer mat in tenShattered.GetComponentsInChildren<Renderer>())
+                {
+                    mat.material = gameObject.GetComponent<Renderer>().material;
+                }
+
+                foreach (Rigidbody rb in tenShattered.GetComponentsInChildren<Rigidbody>())
+                {
+                    Vector3 force = (rb.transform.position - transform.position).normalized * durableTypeBreakForce;
+                    rb.AddForce(force);
+                }
+
+                targetManager.ten += 1;
+                break;
+
+            case TargetPointTypes.pointTwenty:
+
+                GameObject twentyShattered = Instantiate(targetSettings.shatteredTargetPrefab, this.transform.position, this.transform.rotation);
+                twentyShattered.transform.localScale = new Vector3(targetSettings.twentyPointScale.x, targetSettings.twentyPointScale.y, zScale);
+
+                foreach (Renderer mat in twentyShattered.GetComponentsInChildren<Renderer>())
+                {
+                    mat.material = gameObject.GetComponent<Renderer>().material;
+                }
+
+                foreach (Rigidbody rb in twentyShattered.GetComponentsInChildren<Rigidbody>())
+                {
+                    Vector3 force = (rb.transform.position - transform.position).normalized * durableTypeBreakForce;
+                    rb.AddForce(force);
+                }
+
+                targetManager.twenty += 1;
+                break;
+
+            case TargetPointTypes.pointFifty:
+
+                GameObject fiftyShattered = Instantiate(targetSettings.shatteredTargetPrefab, this.transform.position, this.transform.rotation);
+                fiftyShattered.transform.localScale = new Vector3(targetSettings.fiftyPointScale.x, targetSettings.fiftyPointScale.y, zScale);
+
+                foreach (Renderer mat in fiftyShattered.GetComponentsInChildren<Renderer>())
+                {
+                    mat.material = gameObject.GetComponent<Renderer>().material;
+                }
+
+                foreach (Rigidbody rb in fiftyShattered.GetComponentsInChildren<Rigidbody>())
+                {
+                    Vector3 force = (rb.transform.position - transform.position).normalized * durableTypeBreakForce;
+                    rb.AddForce(force);
+                }
+
+                targetManager.fifty += 1;
+                break;
+
+            case TargetPointTypes.pointHundred:
+
+                GameObject hundredShattered = Instantiate(targetSettings.shatteredTargetPrefab, this.transform.position, this.transform.rotation);
+                hundredShattered.transform.localScale = new Vector3(targetSettings.hundredPointScale.x, targetSettings.hundredPointScale.y, zScale);
+
+                foreach (Renderer mat in hundredShattered.GetComponentsInChildren<Renderer>())
+                {
+                    mat.material = gameObject.GetComponent<Renderer>().material;
+                }
+
+                foreach (Rigidbody rb in hundredShattered.GetComponentsInChildren<Rigidbody>())
+                {
+                    Vector3 force = (rb.transform.position - transform.position).normalized * durableTypeBreakForce;
+                    rb.AddForce(force);
+                }
+
+                targetManager.hundred += 1;
+                break;
+
+            case TargetPointTypes.pointThousand:
+
+                GameObject thousandShattered = Instantiate(targetSettings.shatteredTargetPrefab, this.transform.position, this.transform.rotation);
+                thousandShattered.transform.localScale = new Vector3(targetSettings.thousandPointScale.x, targetSettings.thousandPointScale.y, zScale);
+
+                foreach (Renderer mat in thousandShattered.GetComponentsInChildren<Renderer>())
+                {
+                    mat.material = gameObject.GetComponent<Renderer>().material;
+                }
+
+                foreach (Rigidbody rb in thousandShattered.GetComponentsInChildren<Rigidbody>())
+                {
+                    Vector3 force = (rb.transform.position - transform.position).normalized * durableTypeBreakForce;
+                    rb.AddForce(force);
+                }
+
+                targetManager.thousand += 1;
+                break;
+        }
+
+        ParticleSystem particle = Instantiate(targetSettings.shatteredParticleEffect, playerBall.transform.position, playerBall.transform.rotation);
     }
 }

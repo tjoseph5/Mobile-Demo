@@ -65,25 +65,25 @@ public class TargetManager : MonoBehaviour
         {
             if (target.GetComponent<TargetShatter>())
             {
-                switch (target.GetComponent<TargetShatter>().targetTypes)
+                switch (target.GetComponent<TargetShatter>().targetPointType)
                 {
-                    case TargetShatter.TargetType.pointTen:
+                    case TargetShatter.TargetPointTypes.pointTen:
                         tenMax += 1;
                         break;
 
-                    case TargetShatter.TargetType.pointTwenty:
+                    case TargetShatter.TargetPointTypes.pointTwenty:
                         twentyMax += 1;
                         break;
 
-                    case TargetShatter.TargetType.pointFifty:
+                    case TargetShatter.TargetPointTypes.pointFifty:
                         fiftyMax += 1;
                         break;
 
-                    case TargetShatter.TargetType.pointHundred:
+                    case TargetShatter.TargetPointTypes.pointHundred:
                         hundredMax += 1;
                         break;
 
-                    case TargetShatter.TargetType.pointThousand:
+                    case TargetShatter.TargetPointTypes.pointThousand:
                         thousandMax += 1;
                         break;
                 }

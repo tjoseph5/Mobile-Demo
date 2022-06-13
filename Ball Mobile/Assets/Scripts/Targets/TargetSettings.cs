@@ -8,6 +8,7 @@ public class TargetSettings : ScriptableObject
     [Header("Shattered Target Prefab")]
     public GameObject shatteredTargetPrefab;
     public ParticleSystem shatteredParticleEffect; //color of particle effect is based off of the durability type's color
+    public string shatteredTargetName;
 
     [Header("Shattered Durability Break Force")]
     public float fragileShatteredBF;

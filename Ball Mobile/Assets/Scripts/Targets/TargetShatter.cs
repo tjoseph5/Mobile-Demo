@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteAlways]
 public class TargetShatter : MonoBehaviour
 {
 
@@ -20,12 +21,54 @@ public class TargetShatter : MonoBehaviour
 
     [SerializeField] TargetSettings targetSettings;
 
+    int tempPTUpdater;
+    int tempDTUpdater;
+
     void Awake()
     {
         targetRenderer = gameObject.GetComponent<Renderer>();
         playerBall = GameObject.FindGameObjectWithTag("Player");
         targetManager = GameObject.Find("Target Manager").GetComponent<TargetManager>();
 
+        DurabilityTypeAssignment();
+    }
+
+    void Start()
+    {
+        //This switch enum defines each list variable's score amount, size, color, and name
+        PointTypeAssignment();
+
+        tempPTUpdater = ((int)this.targetPointType);
+        tempDTUpdater = ((int)this.targetDurabilityType);
+    }
+
+    void Update()
+    {
+        if (tempDTUpdater != ((int)this.targetDurabilityType))
+        {
+            DurabilityTypeAssignment();
+            tempDTUpdater = ((int)this.targetDurabilityType);
+            Debug.Log("DT Updater = " + tempDTUpdater + " and actual id = " + ((int)this.targetDurabilityType));
+        }
+
+        if(tempPTUpdater != ((int)this.targetPointType))
+        {
+            PointTypeAssignment();
+            tempPTUpdater = ((int)this.targetPointType);
+            Debug.Log("PT Updater = " + tempPTUpdater + " and actual id = " + ((int)this.targetPointType));
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject == playerBall)
+        {
+            ShatterFunction();
+        }
+    }
+
+    void DurabilityTypeAssignment()
+    {
         switch (targetDurabilityType)
         {
             case TargetDurabilityTypes.fragile:
@@ -43,11 +86,12 @@ public class TargetShatter : MonoBehaviour
                 durableTypeBreakForce = targetSettings.sturdyShatteredBF;
                 break;
         }
+
+        transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, zScale);
     }
 
-    void Start()
+    void PointTypeAssignment()
     {
-        //This switch enum defines each list variable's score amount, size, color, and name
         switch (targetPointType)
         {
             case TargetPointTypes.pointTen:
@@ -157,14 +201,6 @@ public class TargetShatter : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject == playerBall)
-        {
-            ShatterFunction();
-        }
-    }
-
     void ShatterFunction()
     {
         Destroy(gameObject);
@@ -176,10 +212,23 @@ public class TargetShatter : MonoBehaviour
 
                 GameObject tenShattered = Instantiate(targetSettings.shatteredTargetPrefab, this.transform.position, this.transform.rotation);
                 tenShattered.transform.localScale = new Vector3(targetSettings.tenPointScale.x, targetSettings.tenPointScale.y, zScale);
+                tenShattered.name = targetSettings.shatteredTargetName;
 
-                foreach (Renderer mat in tenShattered.GetComponentsInChildren<Renderer>())
+                foreach (Transform shard in tenShattered.GetComponentsInChildren<Transform>())
                 {
-                    mat.material = gameObject.GetComponent<Renderer>().material;
+                    Renderer[] renderers = shard.GetComponentsInChildren<Renderer>();
+
+                    for (int i = 0; i < renderers.Length; ++i)
+                    {
+                        Material[] materials = new Material[renderers[i].materials.Length];
+
+                        for (int j = 0; j < materials.Length; ++j)
+                        {
+                            materials[j] = gameObject.GetComponent<Renderer>().material;
+                        }
+
+                        renderers[i].materials = materials;
+                    }
                 }
 
                 foreach (Rigidbody rb in tenShattered.GetComponentsInChildren<Rigidbody>())
@@ -195,10 +244,23 @@ public class TargetShatter : MonoBehaviour
 
                 GameObject twentyShattered = Instantiate(targetSettings.shatteredTargetPrefab, this.transform.position, this.transform.rotation);
                 twentyShattered.transform.localScale = new Vector3(targetSettings.twentyPointScale.x, targetSettings.twentyPointScale.y, zScale);
+                twentyShattered.name = targetSettings.shatteredTargetName;
 
-                foreach (Renderer mat in twentyShattered.GetComponentsInChildren<Renderer>())
+                foreach (Transform shard in twentyShattered.GetComponentsInChildren<Transform>())
                 {
-                    mat.material = gameObject.GetComponent<Renderer>().material;
+                    Renderer[] renderers = shard.GetComponentsInChildren<Renderer>();
+
+                    for (int i = 0; i < renderers.Length; ++i)
+                    {
+                        Material[] materials = new Material[renderers[i].materials.Length];
+
+                        for (int j = 0; j < materials.Length; ++j)
+                        {
+                            materials[j] = gameObject.GetComponent<Renderer>().material;
+                        }
+
+                        renderers[i].materials = materials;
+                    }
                 }
 
                 foreach (Rigidbody rb in twentyShattered.GetComponentsInChildren<Rigidbody>())
@@ -214,10 +276,23 @@ public class TargetShatter : MonoBehaviour
 
                 GameObject fiftyShattered = Instantiate(targetSettings.shatteredTargetPrefab, this.transform.position, this.transform.rotation);
                 fiftyShattered.transform.localScale = new Vector3(targetSettings.fiftyPointScale.x, targetSettings.fiftyPointScale.y, zScale);
+                fiftyShattered.name = targetSettings.shatteredTargetName;
 
-                foreach (Renderer mat in fiftyShattered.GetComponentsInChildren<Renderer>())
+                foreach (Transform shard in fiftyShattered.GetComponentsInChildren<Transform>())
                 {
-                    mat.material = gameObject.GetComponent<Renderer>().material;
+                    Renderer[] renderers = shard.GetComponentsInChildren<Renderer>();
+
+                    for (int i = 0; i < renderers.Length; ++i)
+                    {
+                        Material[] materials = new Material[renderers[i].materials.Length];
+
+                        for (int j = 0; j < materials.Length; ++j)
+                        {
+                            materials[j] = gameObject.GetComponent<Renderer>().material;
+                        }
+
+                        renderers[i].materials = materials;
+                    }
                 }
 
                 foreach (Rigidbody rb in fiftyShattered.GetComponentsInChildren<Rigidbody>())
@@ -233,10 +308,23 @@ public class TargetShatter : MonoBehaviour
 
                 GameObject hundredShattered = Instantiate(targetSettings.shatteredTargetPrefab, this.transform.position, this.transform.rotation);
                 hundredShattered.transform.localScale = new Vector3(targetSettings.hundredPointScale.x, targetSettings.hundredPointScale.y, zScale);
+                hundredShattered.name = targetSettings.shatteredTargetName;
 
-                foreach (Renderer mat in hundredShattered.GetComponentsInChildren<Renderer>())
+                foreach (Transform shard in hundredShattered.GetComponentsInChildren<Transform>())
                 {
-                    mat.material = gameObject.GetComponent<Renderer>().material;
+                    Renderer[] renderers = shard.GetComponentsInChildren<Renderer>();
+
+                    for (int i = 0; i < renderers.Length; ++i)
+                    {
+                        Material[] materials = new Material[renderers[i].materials.Length];
+
+                        for (int j = 0; j < materials.Length; ++j)
+                        {
+                            materials[j] = gameObject.GetComponent<Renderer>().material;
+                        }
+
+                        renderers[i].materials = materials;
+                    }
                 }
 
                 foreach (Rigidbody rb in hundredShattered.GetComponentsInChildren<Rigidbody>())
@@ -252,10 +340,23 @@ public class TargetShatter : MonoBehaviour
 
                 GameObject thousandShattered = Instantiate(targetSettings.shatteredTargetPrefab, this.transform.position, this.transform.rotation);
                 thousandShattered.transform.localScale = new Vector3(targetSettings.thousandPointScale.x, targetSettings.thousandPointScale.y, zScale);
+                thousandShattered.name = targetSettings.shatteredTargetName;
 
-                foreach (Renderer mat in thousandShattered.GetComponentsInChildren<Renderer>())
+                foreach (Transform shard in thousandShattered.GetComponentsInChildren<Transform>())
                 {
-                    mat.material = gameObject.GetComponent<Renderer>().material;
+                    Renderer[] renderers = shard.GetComponentsInChildren<Renderer>();
+
+                    for (int i = 0; i < renderers.Length; ++i)
+                    {
+                        Material[] materials = new Material[renderers[i].materials.Length];
+
+                        for (int j = 0; j < materials.Length; ++j)
+                        {
+                            materials[j] = gameObject.GetComponent<Renderer>().material;
+                        }
+
+                        renderers[i].materials = materials;
+                    }
                 }
 
                 foreach (Rigidbody rb in thousandShattered.GetComponentsInChildren<Rigidbody>())

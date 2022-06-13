@@ -16,49 +16,50 @@ MonoBehaviour:
     type: 3}
   shatteredParticleEffect: {fileID: 9193670546053952710, guid: de527be363ac4614ba02fcfc7139bae6,
     type: 3}
-  fragileShatteredBF: 3
-  normalShatteredBF: 2
-  sturdyShatteredBF: 1
-  fragileZScale: 0.2
-  normalZScale: 0.7
-  sturdyZScale: 1.5
+  shatteredTargetName: Shattered Target
+  fragileShatteredBF: 500
+  normalShatteredBF: 300
+  sturdyShatteredBF: 200
+  fragileZScale: 1
+  normalZScale: 5
+  sturdyZScale: 10
   tenPointName: Ten-Point Target
   tenPointShatteredName: Ten-Point Shattered
   tenPointScore: 10
   tenPointScale: {x: 5, y: 5, z: 0}
   tenPointMaterial:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 8fdab35e479a1c4428732873931d00a5, type: 2}
+  - {fileID: 2100000, guid: 6d8bf47e8fc841842b5b7bbe05648399, type: 2}
+  - {fileID: 2100000, guid: c3ba2341fcd2ac94f9102db1a52b89e1, type: 2}
   twentyPointName: Twenty-Point Target
   twentyPointShatteredName: Twenty-Point Shattered
   twentyPointScore: 20
   twentyPointScale: {x: 4, y: 4, z: 0}
   twentyPointMaterial:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 8fdab35e479a1c4428732873931d00a5, type: 2}
+  - {fileID: 2100000, guid: 6d8bf47e8fc841842b5b7bbe05648399, type: 2}
+  - {fileID: 2100000, guid: c3ba2341fcd2ac94f9102db1a52b89e1, type: 2}
   fiftyPointName: Ffity-Point Target
   fiftyPointShatteredName: Ffity-Point Shattered
   fiftyPointScore: 50
   fiftyPointScale: {x: 3, y: 3, z: 0}
   fiftyPointMaterial:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 8fdab35e479a1c4428732873931d00a5, type: 2}
+  - {fileID: 2100000, guid: 6d8bf47e8fc841842b5b7bbe05648399, type: 2}
+  - {fileID: 2100000, guid: c3ba2341fcd2ac94f9102db1a52b89e1, type: 2}
   hundredPointName: Hundred-Point Target
   hundredPointShatteredName: Hundred-Point Shattered
   hundredPointScore: 100
   hundredPointScale: {x: 2, y: 2, z: 0}
   hundredPointMaterial:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 8fdab35e479a1c4428732873931d00a5, type: 2}
+  - {fileID: 2100000, guid: 6d8bf47e8fc841842b5b7bbe05648399, type: 2}
+  - {fileID: 2100000, guid: c3ba2341fcd2ac94f9102db1a52b89e1, type: 2}
   thousandPointName: Thousand-Point Target
   thousandPointShatteredName: Thousand-Point Shattered
   thousandPointScore: 1000
   thousandPointScale: {x: 1, y: 1, z: 0}
   thousandPointMaterial:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 8fdab35e479a1c4428732873931d00a5, type: 2}
+  - {fileID: 2100000, guid: 6d8bf47e8fc841842b5b7bbe05648399, type: 2}
+  - {fileID: 2100000, guid: c3ba2341fcd2ac94f9102db1a52b89e1, type: 2}

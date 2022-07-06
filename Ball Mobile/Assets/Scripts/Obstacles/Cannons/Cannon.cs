@@ -11,7 +11,7 @@ public class Cannon : MonoBehaviour
     CannonMovement cannonMovement; //The CannonMovement script that allows some cannons to move depending on their state
 
     public float cannonstrength; //Launch strength
-    Vector3 shotDirection = -Vector3.right; //the Direction of the launch/cannon
+    Vector3 shotDirection = -Vector3.forward; //the Direction of the launch/cannon
 
     public float movementSpeed; //the speed of the Cannon's movement
 
@@ -33,7 +33,7 @@ public class Cannon : MonoBehaviour
     void FixedUpdate()
     {
 
-        shotDirection = -transform.right; //Prevents the cannon from firing the player in the opposite direction of the nossle
+        shotDirection = transform.forward; //Prevents the cannon from firing the player in the opposite direction of the nossle
 
         if (inMyCannon) //This if statement helps specify if the cannon has entered a specific cannon
         {

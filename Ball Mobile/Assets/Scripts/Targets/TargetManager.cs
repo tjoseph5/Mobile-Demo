@@ -100,6 +100,7 @@ public class TargetManager : MonoBehaviour
         scoreDisplayUI.text = "Score: " + levelScore;
     }
 
+    
     public void CannonReposition()
     {
         foreach(GameObject gameObject in GameObject.FindGameObjectsWithTag("Cannon"))
@@ -110,4 +111,5 @@ public class TargetManager : MonoBehaviour
             gameObject.GetComponent<CannonMovement>().direction = gameObject.GetComponent<CannonMovement>().storedDirection;
         }
     }
+    
 }

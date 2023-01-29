@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//RENAME THIS TO GAME MANAGER SOMETIME
 public class TargetManager : MonoBehaviour
 {
     [Header("Target Count")]

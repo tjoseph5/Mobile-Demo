@@ -11,7 +11,7 @@ public class Cannon : MonoBehaviour
     CannonMovement cannonMovement; //The CannonMovement script that allows some cannons to move depending on their state
 
     public float cannonstrength; //Launch strength
-    Vector3 shotDirection = -Vector3.forward; //the Direction of the launch/cannon
+    Vector3 shotDirection; //the Direction of the launch/cannon
 
     public float movementSpeed; //the speed of the Cannon's movement
 
@@ -27,6 +27,8 @@ public class Cannon : MonoBehaviour
         gameObject.name = "Cannon";
 
         shotTrajectoryPos = new Vector3(1, 1, 1);
+
+        Destroy(transform.GetChild(3).gameObject);
     }
 
 
@@ -37,9 +39,6 @@ public class Cannon : MonoBehaviour
 
         if (inMyCannon) //This if statement helps specify if the cannon has entered a specific cannon
         {
-
-            
-
             if (Input.touchCount > 0)
             {
                 if (playerBallVel.touch.phase == TouchPhase.Began)
@@ -60,6 +59,8 @@ public class Cannon : MonoBehaviour
                         playerBallVel.canMove = false;
                         playerBall.GetComponent<Rigidbody>().velocity = Vector3.zero;
                         //playerBallVel.waitForMove = 3;
+
+                        LineTrajectory.Instance.UpdateTrajectory((cannonstrength * 100000) * shotDirection, playerBallVel.rb, startingPoint: shotPos.position);
                     }
                     break;
 
@@ -105,7 +106,7 @@ public class Cannon : MonoBehaviour
             inMyCannon = false;
             gameObject.GetComponent<CannonMovement>().direction = CannonMovement.DirectionalMovement.idle; //Sets the cannon's movement state back to zero
 
-            //LineTrajectory.Instance.HideLine();
+            DragShoot.dragShoot.LineTrajectoryClear();
 
             foreach (var explosion in fireFX)
             {

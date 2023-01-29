@@ -5,7 +5,7 @@ using UnityEngine;
 public class LineTrajectory : MonoBehaviour
 {
 
-    [SerializeField] private LineRenderer lineRenderer;
+    public LineRenderer lineRenderer;
     [SerializeField] [Range(3, 30)] private int lineSegmentCount = 20;
     private List<Vector3> linePoints = new List<Vector3>();
 

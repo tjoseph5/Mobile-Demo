@@ -50,6 +50,8 @@ public class DragShoot : MonoBehaviour
     void Awake()
     {
         dragShoot = this;
+
+        LineTrajectory.Instance.lineRenderer = Instantiate(LineTrajectory.Instance.lineRenderer);
     }
 
     private void Start()
@@ -279,7 +281,7 @@ public class DragShoot : MonoBehaviour
         }
     }
 
-    IEnumerator LineTrajectoryClear()
+    public IEnumerator LineTrajectoryClear()
     {
         yield return new WaitForSeconds(5f);
         if(isShoot == true)
@@ -289,7 +291,7 @@ public class DragShoot : MonoBehaviour
 
     }
     
-    void Respawn(Transform transform)
+    public void Respawn(Transform transform)
     {
         if(isShoot && canMove)
         {
